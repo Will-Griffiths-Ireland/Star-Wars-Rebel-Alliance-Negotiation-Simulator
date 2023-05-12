@@ -40,6 +40,7 @@ function addBackground(){
 function destroyTarget(e){
 
     target = e.target;
+    new Audio("assets/sounds/Single_blaster_shot.mp3").play();
     target.removeEventListener("click", destroyTarget);
     target.style.animationDelay = "0ms";
     target.classList.remove("dropIn");
@@ -75,13 +76,52 @@ function scatterAssets(count) {
         asset.style.width = randWidth + "vw";
         asset.style.height = "auto";
         asset.style.zIndex = 2000;
-        asset.classList = "dropIn goodEwok dancing";
+        asset.classList = "dropIn goodEwok";
+        asset.addEventListener("click", destroyTarget);
+        gamePlayArea.appendChild(asset);
+
+        setTimeout(() => {
+            asset.classList.add("dancing");
+            asset.classList.add("dodge");
+        }, 1000 + delay);
+    }
+
+    
+}
+
+function scatterBoxes(count) {
+    let randWidth;
+    let top;
+    let left;
+    for (let i = 0; i < count; i++) {
+        //choosing random widths based on screen res
+        if (window.innerWidth > 900) {
+            randWidth = randomNumber(2, 10);
+        } else {
+            randWidth = randomNumber(5, 15);
+        }
+        left = randomNumber(0, (100 - randWidth)) + "vw";
+        top = randomNumber(10, (90 - randWidth)) + "vh";
+        let delay = randomNumber(0, 2000); //generate a delay for the animation
+        const asset = document.createElement('img');
+        asset.src = "./assets/sprites/rebel_supply_crate.webp";
+        asset.style.position = "absolute";
+        asset.style.animationDelay = delay + "ms";
+        asset.style.top = top;
+        asset.style.left = left;
+        asset.style.width = randWidth + "vw";
+        asset.style.height = "auto";
+        asset.style.zIndex = 3000;
+        asset.classList = "dropIn";
         asset.addEventListener("click", destroyTarget);
         gamePlayArea.appendChild(asset);
     }
+
+    
 }
 
 // GAME START
 
 addBackground();
 scatterAssets(80);
+scatterBoxes(40);

@@ -62,7 +62,7 @@ img {
 
 .dancing {
     animation-name: dance;
-    animation-fill-mode: both;
+    animation-fill-mode: forwards;
     animation-duration: 500ms;
     animation-iteration-count: infinite;
 }
@@ -78,6 +78,31 @@ img {
 
     100% {
         transform: translateY(0);
+    }
+}
+
+.dodge {
+    animation-name: dodge;
+    animation-fill-mode: both;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes dodge {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10vh);
+    }
+
+    50% {
+        transform: translateX(10vh);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }
 
