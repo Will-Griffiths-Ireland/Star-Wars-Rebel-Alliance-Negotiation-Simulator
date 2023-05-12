@@ -60,6 +60,27 @@ img {
     }
 }
 
+.dancing {
+    animation-name: dance;
+    animation-fill-mode: both;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes dance {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(.25vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .destroyTarget {
     animation-name: fadeOut;
     animation-duration: 1s;

@@ -75,7 +75,7 @@ function scatterAssets(count) {
         asset.style.width = randWidth + "vw";
         asset.style.height = "auto";
         asset.style.zIndex = 2000;
-        asset.classList = "dropIn goodEwok";
+        asset.classList = "dropIn goodEwok dancing";
         asset.addEventListener("click", destroyTarget);
         gamePlayArea.appendChild(asset);
     }
