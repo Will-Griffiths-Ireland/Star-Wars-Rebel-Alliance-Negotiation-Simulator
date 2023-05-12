@@ -1,0 +1,61 @@
+/* -------- GENERAL INTERFACE STYLIING -----------*/
+
+* {
+    cursor: url(../images/cursor.png), pointer;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+body {
+    background-color: #000000;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    border: 0;
+    z-index: 1;
+}
+
+img {
+    /* This filter is to add drop shadows on assets */
+    filter: drop-shadow(.25rem .25rem .25rem #000);
+}
+
+#gamePlayArea {
+    width: 100vw;
+    height: 100vh;
+    perspective: 2000px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+ /* ---------- ASSET ANIMATIONS ---------- */
+
+ .dropIn {
+    animation-name: dropIn;
+    animation-fill-mode: both;
+    animation-duration: 1000ms;
+    animation-iteration-count: 1;
+}
+
+@keyframes dropIn {
+    0% {
+        transform: scale(4);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(.9);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
