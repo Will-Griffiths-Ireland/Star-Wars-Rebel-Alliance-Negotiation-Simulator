@@ -1,15 +1,9 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
 * {
-    cursor: url(../cursors/cursor.png) 32 32, pointer;
+    cursor: url(../cursors/blaster_cursor.png) 32 32, pointer;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
-
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 body {
@@ -24,12 +18,13 @@ body {
 
 img {
     /* This filter is to add drop shadows on assets */
-    filter: drop-shadow(.25rem .25rem .25rem #000);
+    /* filter: drop-shadow(.25rem .25rem .25rem #000); */
 }
 
 #gamePlayArea {
     width: 100vw;
     height: 100vh;
+    aspect-ratio: 16 / 9;
     perspective: 2000px;
     position: fixed;
     top: 0;
@@ -42,27 +37,22 @@ img {
 
  /* ---------- ASSET ANIMATIONS ---------- */
 
- .dropIn {
-    animation-name: dropIn;
+ .fadeIn {
+    animation-name: fadeIn;
     animation-fill-mode: both;
     animation-duration: 1000ms;
     animation-iteration-count: 1;
 }
 
-@keyframes dropIn {
+@keyframes fadeIn {
     0% {
-        transform: scale(4);
         opacity: 0;
-    }
-
-    80% {
-        transform: scale(.9);
-        opacity: 1;
+        scale: 0;
     }
 
     100% {
-        transform: scale(1);
         opacity: 1;
+        scale: 1;
     }
 }
 
@@ -80,6 +70,37 @@ img {
 
     50% {
         transform: translateY(.25vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.jumping {
+    animation-name: jumping;
+    animation-fill-mode: none;
+    animation-direction: normal;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes jumping {
+    0% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10vh);
+    }
+
+    80% {
+        transform: translateY(0);
+    }
+
+    90% {
+        transform: translateY(-2vh);
     }
 
     100% {
@@ -112,6 +133,7 @@ img {
 .dodging {
     animation-name: dodge;
     animation-fill-mode: both;
+    animation-direction: alternate;
     animation-duration: 2000ms;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
@@ -123,16 +145,45 @@ img {
     }
 
     25% {
-        transform: translateX(-10vh);
+        transform: translateX(-10vh) translateY(-2vh);
     }
 
     50% {
-        transform: translateX(10vh);
+        transform: translateX(10vh) translateY(2vh);
     }
 
     100% {
         transform: translateX(0);
     }
+}
+
+.evading {
+    animation-name: evading;
+    animation-fill-mode: both;
+    animation-duration: 2000ms;
+    animation-timing-function:ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes evading {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+
+    25% {
+        transform: translateX(-4vh) translateY(-4vh);
+    }
+
+    50% {
+        transform: translateX(4vh) translateY(-2vh);
+    }
+
+    100% {
+        transform: translateX(0)  translateY(0);
+    }
+
+
 }
 
 .destroyTarget {
@@ -150,13 +201,14 @@ img {
 
     5%{
         filter: brightness(300%);
-        transform: scale(1.05);
+        transform: scale(1);
         opacity: 1;
     }
 
     100% {
-        transform: scale(0);
+        transform: scale(1);
         opacity: 0;
+        visibility: hidden;
     }
 }
 
@@ -166,11 +218,4 @@ img {
     filter: brightness(300%) !important;
     transition: visibility 0s 500ms , opacity 500ms linear !important;
 
-}
-
-/* --------- TARGET STYLING -------- */
-
-.goodEwok:hover{
-    /* Dont forget to change corsor type to crosshair or its off! */
-    /* cursor: url(../cursors/blaster_cursor.png), crosshair; */
 }
