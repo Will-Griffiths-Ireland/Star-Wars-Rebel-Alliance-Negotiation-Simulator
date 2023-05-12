@@ -1,7 +1,7 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
 * {
-    cursor: url(../cursors/cursor.png), pointer;
+    cursor: url(../cursors/blaster_cursor.png), crosshair;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
 }
