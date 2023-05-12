@@ -25,6 +25,8 @@ function addBackground(){
 
 // ADD INTERFACE
 
+
+
 //narrator
 
 //blaster info
@@ -32,6 +34,47 @@ function addBackground(){
 //timer info
 
 //ADD SCENE PROPS
+
+
+
+function addProp(relX, relY, type, scale){
+
+    let imgPath = "";
+
+    switch(type) {
+        case "box":
+            imgPath = "./assets/sprites/rebel_supply_crate.webp";
+            break;
+        case "drum":
+            imgPath = "./assets/sprites/drum.webp";
+            break;
+        case "junk":
+            imgPath = "./assets/sprites/junkpile.webp";
+        break;
+        case "lamp":
+            imgPath = "./assets/sprites/lamp.webp";
+        break;
+        case "lamp2":
+            imgPath = "./assets/sprites/lamp2.webp";
+        break;
+        default:
+            imgPath = "./assets/sprites/rebel_supply_crate";
+        }
+
+    const asset = document.createElement('img');
+    asset.src = imgPath;
+    asset.style.position = "absolute";
+    asset.style.top = relY + "vh";
+    asset.style.left = relX + "vw";
+    asset.style.width = scale + "vw";
+    asset.style.height = "auto";
+    asset.style.zIndex = scale + 100;
+    asset.classList = "dropIn";
+    asset.addEventListener("click", destroyTarget);
+    gamePlayArea.appendChild(asset);
+
+
+}
 
 // ADD TARGTES
 
@@ -123,5 +166,12 @@ function scatterBoxes(count) {
 // GAME START
 
 addBackground();
-scatterAssets(65);
-scatterBoxes(15);
+// scatterAssets(65);
+// scatterBoxes(15);
+addProp(25, 85, "box", 5);
+addProp(30, 85, "box", 5);
+addProp(35, 85, "box", 5);
+
+addProp(45, 60, "box", 5);
+addProp(50, 60, "box", 5);
+addProp(55, 60, "box", 5);
