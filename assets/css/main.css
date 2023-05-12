@@ -1,7 +1,7 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
 * {
-    cursor: url(../images/cursor.png), pointer;
+    cursor: url(../cursors/cursor.png), pointer;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
 }
@@ -58,4 +58,36 @@ img {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+.destroyTarget {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    5%{
+        filter: brightness(300%);
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* --------- TARGET STYLING -------- */
+
+.goodEwok:hover{
+    /* Dont forget to change corsor type to crosshair or its off! */
+    cursor: url(../cursors/blaster_cursor.png), crosshair;
 }
