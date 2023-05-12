@@ -1,10 +1,15 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
 * {
-    /* cursor: url(../cursors/blaster_cursor.png), crosshair; */
-    cursor: crosshair;
+    cursor: url(../cursors/cursor.png) 32 32, pointer;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -82,7 +87,29 @@ img {
     }
 }
 
-.dodge {
+.vibrating {
+    animation-name: vibrating;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes vibrating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(.05vh);
+        transform: translateX(.05vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.dodging {
     animation-name: dodge;
     animation-fill-mode: both;
     animation-duration: 2000ms;
@@ -131,6 +158,14 @@ img {
         transform: scale(0);
         opacity: 0;
     }
+}
+
+.destroyTarget2 {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    filter: brightness(300%) !important;
+    transition: visibility 0s 500ms , opacity 500ms linear !important;
+
 }
 
 /* --------- TARGET STYLING -------- */
