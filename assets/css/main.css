@@ -1,7 +1,8 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
 * {
-    cursor: url(../cursors/blaster_cursor.png), crosshair;
+    /* cursor: url(../cursors/blaster_cursor.png), crosshair; */
+    cursor: crosshair;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
 }
@@ -85,6 +86,7 @@ img {
     animation-name: dodge;
     animation-fill-mode: both;
     animation-duration: 2000ms;
+    animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
 }
 
@@ -135,5 +137,5 @@ img {
 
 .goodEwok:hover{
     /* Dont forget to change corsor type to crosshair or its off! */
-    cursor: url(../cursors/blaster_cursor.png), crosshair;
+    /* cursor: url(../cursors/blaster_cursor.png), crosshair; */
 }

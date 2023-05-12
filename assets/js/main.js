@@ -60,12 +60,12 @@ function scatterAssets(count) {
     for (let i = 0; i < count; i++) {
         //choosing random widths based on screen res
         if (window.innerWidth > 900) {
-            randWidth = randomNumber(2, 10);
+            randWidth = randomNumber(6, 8);
         } else {
-            randWidth = randomNumber(5, 15);
+            randWidth = randomNumber(5, 7);
         }
-        left = randomNumber(0, (100 - randWidth)) + "vw";
-        top = randomNumber(10, (90 - randWidth)) + "vh";
+        left = randomNumber(20, (80 - randWidth)) + "vw";
+        top = randomNumber(50, (90 - randWidth)) + "vh";
         let delay = randomNumber(0, 2000); //generate a delay for the animation
         const asset = document.createElement('img');
         asset.src = "./assets/sprites/pissed_ewok.webp";
@@ -96,12 +96,12 @@ function scatterBoxes(count) {
     for (let i = 0; i < count; i++) {
         //choosing random widths based on screen res
         if (window.innerWidth > 900) {
-            randWidth = randomNumber(2, 10);
+            randWidth = randomNumber(5, 8);
         } else {
-            randWidth = randomNumber(5, 15);
+            randWidth = randomNumber(3, 6);
         }
-        left = randomNumber(0, (100 - randWidth)) + "vw";
-        top = randomNumber(10, (90 - randWidth)) + "vh";
+        left = randomNumber(10, (90 - randWidth)) + "vw";
+        top = randomNumber(60, (90 - randWidth)) + "vh";
         let delay = randomNumber(0, 2000); //generate a delay for the animation
         const asset = document.createElement('img');
         asset.src = "./assets/sprites/rebel_supply_crate.webp";
@@ -123,5 +123,5 @@ function scatterBoxes(count) {
 // GAME START
 
 addBackground();
-scatterAssets(80);
-scatterBoxes(40);
+scatterAssets(65);
+scatterBoxes(15);
