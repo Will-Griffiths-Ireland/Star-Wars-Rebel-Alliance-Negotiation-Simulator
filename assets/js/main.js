@@ -4,15 +4,16 @@ const gamePlayArea = document.getElementById("gamePlayArea");
 let musicTrack = {};
 let blasterShots = 6;
 let totalTargets = 0;
-let remainingTargets =0; 
+let remainingTargets = 0; 
 
 // ###### LOAD MUSIC ASSETS ######
 
 musicTrack = new Audio('assets/music/music-for-arcade-style-game-146875.mp3');
 musicTrack.play();
 musicTrack.loop = true;
-musicTrack.volume = 0.1;
+musicTrack.volume = 0.0;
 // gamePlayArea.appendChild(musicTrack);
+
 
 // ###### HELPER FUNCTIONS ######
 
@@ -46,7 +47,7 @@ gamePlayArea.addEventListener("click", pullTrigger)
 let musicIcon = document.createElement('img');
 musicIcon.src = "assets/sprites/musicon.webp";
 musicIcon.style.position = "absolute";
-musicIcon.style.ID = "absolute";
+musicIcon.setAttribute("id", "musicIcon");
 musicIcon.setAttribute("draggable", false);
 musicIcon.style.top = "2vh";
 musicIcon.style.left = "80vw";
@@ -57,6 +58,28 @@ musicIcon.classList = "fadeIn";
 
 gamePlayArea.appendChild(musicIcon);
 
+// add score display
+
+function initScoreDisplay(){
+    let scoreDisplay = document.createElement('div');
+    scoreDisplay.setAttribute("id", "scoreDisplay");
+    scoreDisplay.setAttribute("draggable", false);
+    scoreDisplay.classList.add("interface");
+    
+    gamePlayArea.appendChild(scoreDisplay);
+}
+
+function updateScoreDisplay(){
+    let scoreDisplay = document.getElementById("scoreDisplay");
+
+    scoreDisplay.innerHTML = `<P>targets hit ${totalTargets - remainingTargets} / ${totalTargets} </P>`;
+
+}
+
+
+
+
+
 
 
 // ###### FIRE BLASTER #####
@@ -64,6 +87,10 @@ gamePlayArea.appendChild(musicIcon);
 function pullTrigger(){
 
     // shots left?
+
+    // if no shots left play click
+
+    //else
 
     new Audio("assets/sounds/Single_blaster_shot.mp3").play();
 }
@@ -225,6 +252,7 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
     
     gamePlayArea.appendChild(enemyTarget);
     totalTargets++;
+    remainingTargets++; 
 
 
 }
@@ -251,6 +279,8 @@ function destroyTarget(e){
         hitTarget.classList.add("destroyTarget");
     }
     
+    remainingTargets--;
+    updateScoreDisplay(); 
 }
 
 
@@ -328,6 +358,8 @@ function scatterBoxes(count) {
 
 addBackground("bg2");
 addTimer(45);
+initScoreDisplay();
+
 // scatterAssets(65);
 // scatterBoxes(15);
 
@@ -362,3 +394,4 @@ addTarget(72, 62, "droid2", 6, true, "vibrating");
 addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
 addTarget(64, 50, "trooper", 4, true, "dancing",);
 
+updateScoreDisplay(); 
