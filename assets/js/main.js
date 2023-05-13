@@ -1,6 +1,15 @@
 
 const gamePlayArea = document.getElementById("gamePlayArea");
 
+
+let blasterShots = 6;
+let totalTargets = 0;
+let remainingTargets =0; 
+
+// ###### LOAD MUSIC ASSETS ######
+
+// const shotFiredSound = new Audio("assets/sounds/Single_blaster_shot.mp3");
+
 // ###### HELPER FUNCTIONS ######
 
 //simple function to return a random number within a range
@@ -13,7 +22,7 @@ function randomNumber(min, max) {
 
 function addBackground(){
     const bg = document.createElement('img');
-    bg.src = "./assets/backgrounds/bg1.webp";
+    bg.src = "./assets/backgrounds/bg2.webp";
     bg.style.position = "absolute";
     bg.style.top = 0;
     bg.style.left = 0;
@@ -22,13 +31,28 @@ function addBackground(){
 
 }
 
+// ###### ADD LISTENERS ######
+
+gamePlayArea.addEventListener("click", pullTrigger)
+
 // ADD INTERFACE
 
+// ###### FIRE BLASTER #####
 
+function pullTrigger(){
+
+    // shots left?
+
+    new Audio("assets/sounds/Single_blaster_shot.mp3").play();
+}
 
 //narrator
 
+addProp(5, 5, "droid_face", 10, false);
+
 //blaster info
+
+
 
 //timer info
 function addTimer(maxSeconds) {
@@ -60,7 +84,14 @@ function setCountdown(maxSeconds) {
 //ADD SCENE PROPS
 
 
-
+/**
+   * Creates and places prop asset in play area
+   * @param  {int} relX Percentage of screen width from right to position prop
+   * @param  {int} relY Percentage of screen height from top to position prop
+   * @param  {String} type Name of prop to create
+   * @param  {String} scale  Percentage width scale of prop
+   * @param  {Boolean}       Set if prop destructable.
+   */
 function addProp(relX, relY, type, scale, destructable){
 
     let imgPath = "";
@@ -68,6 +99,9 @@ function addProp(relX, relY, type, scale, destructable){
     switch(type) {
         case "box":
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
+            break;
+        case "droid_face":
+            imgPath = "./assets/sprites/Droidface.webp";
             break;
         case "drum":
             imgPath = "./assets/sprites/drum.webp";
@@ -85,15 +119,16 @@ function addProp(relX, relY, type, scale, destructable){
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
         }
 
-    const asset = document.createElement('img');
+    let asset = document.createElement('img');
     asset.src = imgPath;
     asset.style.position = "absolute";
+    asset.setAttribute("draggable", false);
     asset.style.top = relY + "vh";
     asset.style.left = relX + "vw";
     asset.style.width = scale + "vw";
     asset.style.height = "auto";
     asset.style.zIndex = relY;
-    asset.classList = "dropIn";
+    asset.classList = "fadeIn";
     if(destructable){
         asset.addEventListener("click", destroyTarget);
     }
@@ -105,7 +140,7 @@ function addProp(relX, relY, type, scale, destructable){
 
 // ADD TARGTES
 
-function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
+function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, aniDuration){
 
     let imgPath = "";
 
@@ -119,6 +154,9 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
         case "droid2":
             imgPath = "./assets/sprites/battledroid.webp";
         break;
+        case "droid3":
+            imgPath = "./assets/sprites/droid_biggun.webp";
+        break;
         case "vader":
             imgPath = "./assets/sprites/vader.webp";
         break;
@@ -129,31 +167,36 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
             imgPath = "./assets/sprites/StormTrooper.webp";
         }
 
-    const asset = document.createElement('img');
-    asset.src = imgPath;
-    asset.style.position = "absolute";
-    asset.style.top = relY + "vh";
-    asset.style.left = relX + "vw";
-    asset.style.width = scale + "vw";
-    asset.style.height = "auto";
-    if(zIndex){
-        asset.style.zIndex = zIndex;
+    let enemyTarget = document.createElement('img');
+    enemyTarget.src = imgPath;
+    enemyTarget.style.position = "absolute";
+    enemyTarget.setAttribute("draggable", false);
+    enemyTarget.style.top = relY + "vh";
+    enemyTarget.style.left = relX + "vw";
+    enemyTarget.style.width = scale + "vw";
+    enemyTarget.style.height = "auto";
+    if(zIndex && zIndex != 0){
+        enemyTarget.style.zIndex = zIndex;
     }
     else{
-        asset.style.zIndex = relY;
+        enemyTarget.style.zIndex = relY;
     }
-    
-    asset.classList = "dropIn target";
+    enemyTarget.classList = "fadeIn target";
+    enemyTarget.classList.add(`${type}`);
     
     if(destructable){
-        asset.addEventListener("click", destroyTarget);
+        enemyTarget.addEventListener("click", destroyTarget);
     }
 
     setTimeout(() => {
-        asset.classList.add(`${motionType}`)
+        enemyTarget.classList.add(`${motionType}`);
+        if(aniDuration){
+            enemyTarget.style.animationDuration = aniDuration + "ms";
+        }
     }, 1000);
     
-    gamePlayArea.appendChild(asset);
+    gamePlayArea.appendChild(enemyTarget);
+    totalTargets++;
 
 
 }
@@ -162,21 +205,24 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
 
 function destroyTarget(e){
 
-    target = e.target;
+    let hitTarget = e.target;
+    // need hit sound
     new Audio("assets/sounds/Single_blaster_shot.mp3").play();
-    target.removeEventListener("click", destroyTarget);
-    target.style.animationDelay = "0ms";
-    target.classList.remove("dropIn");
-    if(target.classList.contains("target")){
-        target.classList.add("destroyTarget2");
+    hitTarget.removeEventListener("click", destroyTarget);
+
+    if(hitTarget.classList.contains("trooper")){
+        new Audio("assets/sounds/trooperHit.mp3").play();
+    }
+
+    hitTarget.style.animationDelay = "0ms";
+    hitTarget.classList.remove("fadeIn");
+    if(hitTarget.classList.contains("target")){
+        hitTarget.classList.add("destroyTarget2");
     }
     else{
-        target.classList.add("destroyTarget");
+        hitTarget.classList.add("destroyTarget");
     }
     
-    
-
-
 }
 
 
@@ -206,7 +252,7 @@ function scatterAssets(count) {
         asset.style.width = randWidth + "vw";
         asset.style.height = "auto";
         asset.style.zIndex = 2000;
-        asset.classList = "dropIn goodEwok";
+        asset.classList = "fadeIn goodEwok";
         asset.addEventListener("click", destroyTarget);
         gamePlayArea.appendChild(asset);
 
@@ -242,7 +288,7 @@ function scatterBoxes(count) {
         asset.style.width = randWidth + "vw";
         asset.style.height = "auto";
         asset.style.zIndex = 3000;
-        asset.classList = "dropIn";
+        asset.classList = "fadeIn";
         asset.addEventListener("click", destroyTarget);
         gamePlayArea.appendChild(asset);
     }
@@ -256,23 +302,33 @@ addBackground();
 addTimer(45);
 // scatterAssets(65);
 // scatterBoxes(15);
+
+// front area
 addProp(20, 75, "box", 7 , true);
-addTarget(25, 70, "trooper", 5, true, "dancing");
-addProp(30, 77, "junk", 7, true);
+addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
+addProp(30, 75, "box", 7, true);
 addProp(40, 75, "box", 7, true);
+addTarget(60, 70, "droid2", 8, true, "jumping", 0, 1300);
+addTarget(50, 70, "vader", 12, true, "evading", 90, 2345);
+addTarget(25, 80, "ewok", 8, true, "jumping", 90);
+//mid area
 
 addProp(40, 70, "box", 5, true);
 addTarget(43, 62, "ewok", 6, true, "dancing", 80);
 addProp(43, 72, "box", 6, true);
 addProp(46, 70, "box", 5, true);
-addProp(45, 60, "drum", 4, true);
-addTarget(50, 62, "ewok", 6, true, "vibrating", 80);
+addProp(23, 60, "drum", 6, true);
+addProp(29, 60, "drum", 6, true);
+addProp(25, 62, "drum", 6, true);
+addTarget(30, 55, "droid3", 8, true, "dodging",0 , 4000);
+addTarget(60, 62, "ewok", 6, true, "vibrating",);
 
-addProp(50, 60, "box", 4, false);
-addTarget(48, 58, "trooper", 3, true, "dodging");
-addProp(55, 60, "box", 4, true);
-addProp(55, 12, "lamp", 4, true);
-addTarget(55, 62, "droid2", 15, true, "vibrating");
-addTarget(60, 70, "droid2", 8, true, "dancing");
-addTarget(50, 70, "vader", 8, true, "dodging",90);
+//back area 
+addProp(45, 60, "box", 5, false);
+addProp(50, 60, "box", 5, false);
+addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
+addProp(55, 60, "box", 5, true);
+addTarget(72, 62, "droid2", 6, true, "vibrating");
+addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
+addTarget(64, 50, "trooper", 4, true, "dancing",);
 
