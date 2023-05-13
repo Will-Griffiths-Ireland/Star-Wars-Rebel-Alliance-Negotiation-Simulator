@@ -265,12 +265,12 @@ addBackground();
 addTimer(30);
 // scatterAssets(65);
 // scatterBoxes(15);
-addTarget(40 ,40, "tie", 12, true, "dodging", 1);
+addTarget(40 ,40, "tie", 12, true, "fly-right", 1);
 
-addTarget(60 ,40, "tie_flip", 9, true, "evading", 1);
+addTarget(60 ,40, "tie_flip", 9, true, "fly-left", 1);
 
-addTarget(20 ,31, "tie_flip", 7, true, "evading", 1);
+addTarget(20 ,31, "tie_flip", 7, true, "fly-left", 1);
 
-addTarget(70 ,20, "tie", 6, true, "dancing", 1);
+addTarget(70 ,20, "tie", 6, true, "fly-right", 1);
 
-addTarget(20 ,70, "tie_flip", 15, true, "dancing", 1);
+addTarget(20 ,70, "tie_flip", 15, true, "fly-left", 1);
