@@ -1,0 +1,16 @@
+.scaling {
+    animation-name: scaling;
+    animation-duration: 10s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes scaling {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(4.5);
+    }
+}
