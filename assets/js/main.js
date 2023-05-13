@@ -274,12 +274,13 @@ function destroyTarget(e){
     hitTarget.classList.remove("fadeIn");
     if(hitTarget.classList.contains("target")){
         hitTarget.classList.add("destroyTarget2");
+        remainingTargets--;
     }
     else{
         hitTarget.classList.add("destroyTarget");
     }
     
-    remainingTargets--;
+    
     updateScoreDisplay(); 
 }
 
