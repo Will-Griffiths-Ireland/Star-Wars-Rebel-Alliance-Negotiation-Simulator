@@ -1,9 +1,9 @@
 const container = document.getElementById('container');
-const sparkleNum = 15;
+const sparkleNum = 50;
 const radius = 2;
 const height = 10;
 const width = 3;
-const color = ['red', 'blue', 'yellow']
+const color = ['blue']
 let maxHeight = 40;
 let target = true;
 

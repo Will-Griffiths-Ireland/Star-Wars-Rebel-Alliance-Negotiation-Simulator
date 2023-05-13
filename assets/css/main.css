@@ -11,7 +11,18 @@
 * {
     cursor: url(../cursors/blaster_cursor.png) 32 32, pointer;
     margin: 0;
+    padding:0;
     font-family: 'jediFont';
+}
+
+p {
+    /* text-align:center; 
+    vertical-align: middle;
+    display: table-cell;
+    line-height: normal; */
+    background-color: transparent;
+    color: inherit;
+    padding: .5vw;
 }
 
 
@@ -247,10 +258,13 @@ img {
 .interface{
     position:fixed;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     border-radius: 2vh;
     border-style: solid;
     border-width: .2vw;
-    background-color: #0cb4a6;
+    background-color: #b9c0bf;
     filter: drop-shadow(.5vw .5vw .5vw);
 }
 
@@ -265,4 +279,17 @@ img {
     height: auto;
     font-size: 2vw;
 
+}
+
+#blasterDisplay {
+    top: 10vh;
+    left: 85vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 10vw;
+    font-size: auto;
 }
