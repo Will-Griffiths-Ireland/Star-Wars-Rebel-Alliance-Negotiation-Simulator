@@ -55,6 +55,31 @@ addProp(5, 5, "droid_face", 10, false);
 
 
 //timer info
+function addTimer(maxSeconds) {
+    const timerDiv = document.createElement('div');
+    timerDiv.setAttribute('id', 'timer');
+
+    const countdown = document.createElement('p');
+    countdown.innerHTML = `<span id="countdown">${maxSeconds}</span> SEC`;
+    timerDiv.appendChild(countdown);
+
+    gamePlayArea.appendChild(timerDiv);
+
+    setCountdown(maxSeconds)
+}
+
+function setCountdown(maxSeconds) {
+    timeLeft = maxSeconds
+    var countdownTimer = setInterval(function(){
+        timeLeft--
+        displayTime = document.getElementById('countdown')
+        displayTime.innerText = timeLeft;
+    if (timeLeft === 0) {
+        // Timeout logic goes here
+        clearInterval(countdownTimer);
+    }
+    }, 1000);
+}
 
 //ADD SCENE PROPS
 
@@ -274,6 +299,7 @@ function scatterBoxes(count) {
 // GAME START
 
 addBackground();
+addTimer(45);
 // scatterAssets(65);
 // scatterBoxes(15);
 
