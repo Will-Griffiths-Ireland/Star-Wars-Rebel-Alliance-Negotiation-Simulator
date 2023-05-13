@@ -1,10 +1,19 @@
-/* -------- GENERAL INTERFACE STYLIING -----------*/
+/* -------- GENERAL STYLING -----------*/
+
+@font-face {
+    font-family: 'jediFont';
+    src: url(../fonts/Starjedi.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 * {
     cursor: url(../cursors/blaster_cursor.png) 32 32, pointer;
     margin: 0;
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'jediFont';
 }
+
 
 body {
     background-color: #000000;
@@ -18,7 +27,11 @@ body {
 
 img {
     /* This filter is to add drop shadows on assets */
-    /* filter: drop-shadow(.25rem .25rem .25rem #000); */
+    /* filter: drop-shadow(.4vw .05vw .05vw #000); */
+    /* filter: sepia(100%); */
+    /* filter:hue-rotate(180deg); */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 #gamePlayArea {
@@ -226,5 +239,30 @@ img {
     opacity: 0 !important;
     filter: brightness(300%) !important;
     transition: visibility 0s 500ms , opacity 500ms linear !important;
+
+}
+
+ /* ---------- INTERFACE OBJECTS ---------- */
+
+.interface{
+    position:fixed;
+    z-index: 1000;
+    border-radius: 2vh;
+    border-style: solid;
+    border-width: .2vw;
+    background-color: #0cb4a6;
+    filter: drop-shadow(.5vw .5vw .5vw);
+}
+
+
+ #scoreDisplay{
+    
+    top: 2vh;
+    left: 50vw;
+    text-align: center;
+    justify-content: center;
+    width: 25vw;
+    height: auto;
+    font-size: 2vw;
 
 }

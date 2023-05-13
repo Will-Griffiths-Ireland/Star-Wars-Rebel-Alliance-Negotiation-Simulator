@@ -1,14 +1,19 @@
 
 const gamePlayArea = document.getElementById("gamePlayArea");
 
-
+let musicTrack = {};
 let blasterShots = 6;
 let totalTargets = 0;
-let remainingTargets =0; 
+let remainingTargets = 0; 
 
 // ###### LOAD MUSIC ASSETS ######
 
-// const shotFiredSound = new Audio("assets/sounds/Single_blaster_shot.mp3");
+musicTrack = new Audio('assets/music/music-for-arcade-style-game-146875.mp3');
+musicTrack.play();
+musicTrack.loop = true;
+musicTrack.volume = 0.0;
+// gamePlayArea.appendChild(musicTrack);
+
 
 // ###### HELPER FUNCTIONS ######
 
@@ -20,9 +25,9 @@ function randomNumber(min, max) {
 
 // ###### ADD BACKGROUND ######
 
-function addBackground(){
+function addBackground(backgroundNo){
     const bg = document.createElement('img');
-    bg.src = "./assets/backgrounds/bg2.webp";
+    bg.src = `./assets/backgrounds/${backgroundNo}.webp`;
     bg.style.position = "absolute";
     bg.style.top = 0;
     bg.style.left = 0;
@@ -35,13 +40,57 @@ function addBackground(){
 
 gamePlayArea.addEventListener("click", pullTrigger)
 
-// ADD INTERFACE
+// ###### ADD INTERFACE ######
+
+// add music icon
+
+let musicIcon = document.createElement('img');
+musicIcon.src = "assets/sprites/musicon.webp";
+musicIcon.style.position = "absolute";
+musicIcon.setAttribute("id", "musicIcon");
+musicIcon.setAttribute("draggable", false);
+musicIcon.style.top = "2vh";
+musicIcon.style.left = "80vw";
+musicIcon.style.width = "5vw";
+musicIcon.style.height = "auto";
+musicIcon.style.zIndex = "1000";
+musicIcon.classList = "fadeIn";
+
+gamePlayArea.appendChild(musicIcon);
+
+// add score display
+
+function initScoreDisplay(){
+    let scoreDisplay = document.createElement('div');
+    scoreDisplay.setAttribute("id", "scoreDisplay");
+    scoreDisplay.setAttribute("draggable", false);
+    scoreDisplay.classList.add("interface");
+    
+    gamePlayArea.appendChild(scoreDisplay);
+}
+
+function updateScoreDisplay(){
+    let scoreDisplay = document.getElementById("scoreDisplay");
+
+    scoreDisplay.innerHTML = `<P>targets hit ${totalTargets - remainingTargets} / ${totalTargets} </P>`;
+
+}
+
+
+
+
+
+
 
 // ###### FIRE BLASTER #####
 
 function pullTrigger(){
 
     // shots left?
+
+    // if no shots left play click
+
+    //else
 
     new Audio("assets/sounds/Single_blaster_shot.mp3").play();
 }
@@ -90,7 +139,7 @@ function setCountdown(maxSeconds) {
    * @param  {int} relY Percentage of screen height from top to position prop
    * @param  {String} type Name of prop to create
    * @param  {String} scale  Percentage width scale of prop
-   * @param  {Boolean}       Set if prop destructable.
+   * @param  {Boolean} Set to true if prop destructable.
    */
 function addProp(relX, relY, type, scale, destructable){
 
@@ -103,8 +152,8 @@ function addProp(relX, relY, type, scale, destructable){
         case "droid_face":
             imgPath = "./assets/sprites/Droidface.webp";
             break;
-        case "drum":
-            imgPath = "./assets/sprites/drum.webp";
+        case "barrel":
+            imgPath = "./assets/sprites/barrel.webp";
             break;
         case "junk":
             imgPath = "./assets/sprites/junkpile.webp";
@@ -114,6 +163,12 @@ function addProp(relX, relY, type, scale, destructable){
         break;
         case "lamp2":
             imgPath = "./assets/sprites/lamp2.webp";
+        break;
+        case "barrier":
+            imgPath = "./assets/sprites/barrier.webp";
+        break;
+        case "barrier2":
+            imgPath = "./assets/sprites/barrier2.webp";
         break;
         default:
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
@@ -197,6 +252,7 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
     
     gamePlayArea.appendChild(enemyTarget);
     totalTargets++;
+    remainingTargets++; 
 
 
 }
@@ -223,6 +279,8 @@ function destroyTarget(e){
         hitTarget.classList.add("destroyTarget");
     }
     
+    remainingTargets--;
+    updateScoreDisplay(); 
 }
 
 
@@ -298,8 +356,10 @@ function scatterBoxes(count) {
 
 // GAME START
 
-addBackground();
+addBackground("bg2");
 addTimer(45);
+initScoreDisplay();
+
 // scatterAssets(65);
 // scatterBoxes(15);
 
@@ -309,8 +369,10 @@ addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
 addProp(30, 75, "box", 7, true);
 addProp(40, 75, "box", 7, true);
 addTarget(60, 70, "droid2", 8, true, "jumping", 0, 1300);
-addTarget(50, 70, "vader", 12, true, "evading", 90, 2345);
+addTarget(50, 70, "vader", 20, true, "evading", 90, 2345);
 addTarget(25, 80, "ewok", 8, true, "jumping", 90);
+addProp(65, 79, "barrier", 15, true);
+addProp(10, 79, "barrier2", 15, true);
 //mid area
 
 addProp(40, 70, "box", 5, true);
@@ -332,3 +394,4 @@ addTarget(72, 62, "droid2", 6, true, "vibrating");
 addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
 addTarget(64, 50, "trooper", 4, true, "dancing",);
 
+updateScoreDisplay(); 
