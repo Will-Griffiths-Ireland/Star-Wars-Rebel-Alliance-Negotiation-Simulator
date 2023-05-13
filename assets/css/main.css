@@ -40,6 +40,15 @@ img {
     z-index: 2;
 }
 
+#timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2%;
+    background-color: white;
+    z-index: 999;
+}
+
  /* ---------- ASSET ANIMATIONS ---------- */
 
  .dropIn {
