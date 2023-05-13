@@ -1,10 +1,20 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
+@font-face {
+    font-family: 'jediFont';
+    src: url(../fonts/starjedi-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 * {
     cursor: url(../cursors/blaster_cursor.png) 32 32, pointer;
     margin: 0;
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'jediFont';
+    font-size: 5vh;
 }
+
 
 body {
     background-color: #000000;
@@ -18,7 +28,11 @@ body {
 
 img {
     /* This filter is to add drop shadows on assets */
-    /* filter: drop-shadow(.25rem .25rem .25rem #000); */
+    /* filter: drop-shadow(.4vw .05vw .05vw #000); */
+    /* filter: sepia(100%); */
+    /* filter:hue-rotate(180deg); */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 #gamePlayArea {

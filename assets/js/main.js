@@ -1,14 +1,18 @@
 
 const gamePlayArea = document.getElementById("gamePlayArea");
 
-
+let musicTrack = {};
 let blasterShots = 6;
 let totalTargets = 0;
 let remainingTargets =0; 
 
 // ###### LOAD MUSIC ASSETS ######
 
-// const shotFiredSound = new Audio("assets/sounds/Single_blaster_shot.mp3");
+musicTrack = new Audio('assets/music/music-for-arcade-style-game-146875.mp3');
+musicTrack.play();
+musicTrack.loop = true;
+musicTrack.volume = 0.1;
+// gamePlayArea.appendChild(musicTrack);
 
 // ###### HELPER FUNCTIONS ######
 
@@ -20,9 +24,9 @@ function randomNumber(min, max) {
 
 // ###### ADD BACKGROUND ######
 
-function addBackground(){
+function addBackground(backgroundNo){
     const bg = document.createElement('img');
-    bg.src = "./assets/backgrounds/bg2.webp";
+    bg.src = `./assets/backgrounds/${backgroundNo}.webp`;
     bg.style.position = "absolute";
     bg.style.top = 0;
     bg.style.left = 0;
@@ -35,7 +39,25 @@ function addBackground(){
 
 gamePlayArea.addEventListener("click", pullTrigger)
 
-// ADD INTERFACE
+// ###### ADD INTERFACE ######
+
+// add music icon
+
+let musicIcon = document.createElement('img');
+musicIcon.src = "assets/sprites/musicon.webp";
+musicIcon.style.position = "absolute";
+musicIcon.style.ID = "absolute";
+musicIcon.setAttribute("draggable", false);
+musicIcon.style.top = "2vh";
+musicIcon.style.left = "80vw";
+musicIcon.style.width = "5vw";
+musicIcon.style.height = "auto";
+musicIcon.style.zIndex = "1000";
+musicIcon.classList = "fadeIn";
+
+gamePlayArea.appendChild(musicIcon);
+
+
 
 // ###### FIRE BLASTER #####
 
@@ -90,7 +112,7 @@ function setCountdown(maxSeconds) {
    * @param  {int} relY Percentage of screen height from top to position prop
    * @param  {String} type Name of prop to create
    * @param  {String} scale  Percentage width scale of prop
-   * @param  {Boolean}       Set if prop destructable.
+   * @param  {Boolean} Set to true if prop destructable.
    */
 function addProp(relX, relY, type, scale, destructable){
 
@@ -103,8 +125,8 @@ function addProp(relX, relY, type, scale, destructable){
         case "droid_face":
             imgPath = "./assets/sprites/Droidface.webp";
             break;
-        case "drum":
-            imgPath = "./assets/sprites/drum.webp";
+        case "barrel":
+            imgPath = "./assets/sprites/barrel.webp";
             break;
         case "junk":
             imgPath = "./assets/sprites/junkpile.webp";
@@ -114,6 +136,12 @@ function addProp(relX, relY, type, scale, destructable){
         break;
         case "lamp2":
             imgPath = "./assets/sprites/lamp2.webp";
+        break;
+        case "barrier":
+            imgPath = "./assets/sprites/barrier.webp";
+        break;
+        case "barrier2":
+            imgPath = "./assets/sprites/barrier2.webp";
         break;
         default:
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
@@ -298,7 +326,7 @@ function scatterBoxes(count) {
 
 // GAME START
 
-addBackground();
+addBackground("bg2");
 addTimer(45);
 // scatterAssets(65);
 // scatterBoxes(15);
@@ -309,8 +337,10 @@ addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
 addProp(30, 75, "box", 7, true);
 addProp(40, 75, "box", 7, true);
 addTarget(60, 70, "droid2", 8, true, "jumping", 0, 1300);
-addTarget(50, 70, "vader", 12, true, "evading", 90, 2345);
+addTarget(50, 70, "vader", 20, true, "evading", 90, 2345);
 addTarget(25, 80, "ewok", 8, true, "jumping", 90);
+addProp(65, 79, "barrier", 15, true);
+addProp(10, 79, "barrier2", 15, true);
 //mid area
 
 addProp(40, 70, "box", 5, true);
