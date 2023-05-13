@@ -1,7 +1,6 @@
 * { padding: 0; margin: 0; }
 
-body, html
-{
+body, html {
     width: 100vw;
     height: 100vh;
     font-family: "Press Start 2P", cursive;
@@ -10,6 +9,49 @@ body, html
     background-color: #000;
     overflow: hidden;
 }
+
+/* Intro section with Typing and fade animations */
+p#start {
+    margin: 20% auto;
+    color: #4ee;
+    z-index: 99;
+    width: 49ch;
+    animation: intro 5s ease-out, typing 3s steps(49), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 2em;
+    opacity: 0;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+    
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+@keyframes intro {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+/* END - Intro section with Typing and fade animations */
 
 
 
