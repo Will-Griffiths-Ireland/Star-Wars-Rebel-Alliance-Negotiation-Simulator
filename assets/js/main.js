@@ -1,7 +1,14 @@
 
 const gamePlayArea = document.getElementById("gamePlayArea");
+
+
 let blasterShots = 6;
-let totalTargets = 0; 
+let totalTargets = 0;
+let remainingTargets =0; 
+
+// ###### LOAD MUSIC ASSETS ######
+
+// const shotFiredSound = new Audio("assets/sounds/Single_blaster_shot.mp3");
 
 // ###### HELPER FUNCTIONS ######
 
@@ -87,7 +94,7 @@ function addProp(relX, relY, type, scale, destructable){
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
         }
 
-    const asset = document.createElement('img');
+    let asset = document.createElement('img');
     asset.src = imgPath;
     asset.style.position = "absolute";
     asset.setAttribute("draggable", false);
@@ -135,34 +142,35 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
             imgPath = "./assets/sprites/StormTrooper.webp";
         }
 
-    const asset = document.createElement('img');
-    asset.src = imgPath;
-    asset.style.position = "absolute";
-    asset.setAttribute("draggable", false);
-    asset.style.top = relY + "vh";
-    asset.style.left = relX + "vw";
-    asset.style.width = scale + "vw";
-    asset.style.height = "auto";
+    let enemyTarget = document.createElement('img');
+    enemyTarget.src = imgPath;
+    enemyTarget.style.position = "absolute";
+    enemyTarget.setAttribute("draggable", false);
+    enemyTarget.style.top = relY + "vh";
+    enemyTarget.style.left = relX + "vw";
+    enemyTarget.style.width = scale + "vw";
+    enemyTarget.style.height = "auto";
     if(zIndex && zIndex != 0){
-        asset.style.zIndex = zIndex;
+        enemyTarget.style.zIndex = zIndex;
     }
     else{
-        asset.style.zIndex = relY;
+        enemyTarget.style.zIndex = relY;
     }
-    asset.classList = "fadeIn target";
+    enemyTarget.classList = "fadeIn target";
+    enemyTarget.classList.add(`${type}`);
     
     if(destructable){
-        asset.addEventListener("click", destroyTarget);
+        enemyTarget.addEventListener("click", destroyTarget);
     }
 
     setTimeout(() => {
-        asset.classList.add(`${motionType}`);
+        enemyTarget.classList.add(`${motionType}`);
         if(aniDuration){
-            asset.style.animationDuration = aniDuration + "ms";
+            enemyTarget.style.animationDuration = aniDuration + "ms";
         }
     }, 1000);
     
-    gamePlayArea.appendChild(asset);
+    gamePlayArea.appendChild(enemyTarget);
     totalTargets++;
 
 
@@ -172,22 +180,24 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
 
 function destroyTarget(e){
 
-    target = e.target;
+    let hitTarget = e.target;
     // need hit sound
-    // new Audio("assets/sounds/Single_blaster_shot.mp3").play();
-    target.removeEventListener("click", destroyTarget);
-    target.style.animationDelay = "0ms";
-    target.classList.remove("fadeIn");
-    if(target.classList.contains("target")){
-        target.classList.add("destroyTarget2");
+    new Audio("assets/sounds/Single_blaster_shot.mp3").play();
+    hitTarget.removeEventListener("click", destroyTarget);
+
+    if(hitTarget.classList.contains("trooper")){
+        new Audio("assets/sounds/trooperHit.mp3").play();
+    }
+
+    hitTarget.style.animationDelay = "0ms";
+    hitTarget.classList.remove("fadeIn");
+    if(hitTarget.classList.contains("target")){
+        hitTarget.classList.add("destroyTarget2");
     }
     else{
-        target.classList.add("destroyTarget");
+        hitTarget.classList.add("destroyTarget");
     }
     
-    
-
-
 }
 
 
@@ -293,4 +303,6 @@ addProp(50, 60, "box", 5, false);
 addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
 addProp(55, 60, "box", 5, true);
 addTarget(72, 62, "droid2", 6, true, "vibrating");
+addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
+addTarget(64, 50, "trooper", 4, true, "dancing",);
 
