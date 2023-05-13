@@ -1,9 +1,15 @@
 /* -------- GENERAL INTERFACE STYLIING -----------*/
 
 * {
-    cursor: url(../images/cursor.png), pointer;
+    cursor: url(../cursors/cursor.png) 32 32, pointer;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -34,6 +40,15 @@ img {
     z-index: 2;
 }
 
+#timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2%;
+    background-color: white;
+    z-index: 999;
+}
+
  /* ---------- ASSET ANIMATIONS ---------- */
 
  .dropIn {
@@ -58,4 +73,113 @@ img {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+.dancing {
+    animation-name: dance;
+    animation-fill-mode: forwards;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes dance {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(.25vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vibrating {
+    animation-name: vibrating;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes vibrating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(.05vh);
+        transform: translateX(.05vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.dodging {
+    animation-name: dodge;
+    animation-fill-mode: both;
+    animation-duration: 2000ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes dodge {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10vh);
+    }
+
+    50% {
+        transform: translateX(10vh);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.destroyTarget {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    5%{
+        filter: brightness(300%);
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.destroyTarget2 {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    filter: brightness(300%) !important;
+    transition: visibility 0s 500ms , opacity 500ms linear !important;
+
+}
+
+/* --------- TARGET STYLING -------- */
+
+.goodEwok:hover{
+    /* Dont forget to change corsor type to crosshair or its off! */
+    /* cursor: url(../cursors/blaster_cursor.png), crosshair; */
 }
