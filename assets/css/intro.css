@@ -115,6 +115,97 @@ h1 sub {
 /* END - Intro Title */
 
 
+/* Intro Story Block */
+#titles {
+    position: absolute;
+    width: 18em;
+    height: 50em;
+    bottom: 0;
+    left: 50%;
+    margin-left: -9em;
+    font-size: 350%;
+    text-align: justify;
+    overflow: hidden;
+    -webkit-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transform: perspective(200px) rotateX(25deg);
+    -moz-transform: perspective(200px) rotateX(25deg);
+    -ms-transform: perspective(200px) rotateX(25deg);
+    -o-transform: perspective(200px) rotateX(25deg);
+    transform: perspective(200px) rotateX(25deg);
+}
+
+#titles:after {
+    position: absolute;
+    content: ' ';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 60%;
+    background-image: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+    background-image: -o-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+    background-image: linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+#titles p {
+    text-align: justify;
+    margin: 0.8em 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #fff, 1px 2px 1px #000, 1px 3px 1px #fff, 1px 4px 1px #000;
+    color: gold;
+}
+
+#titles p.center {text-align: center;}
+
+#titles a {
+    color: #ff6;
+    text-decoration: underline;
+}
+
+#titlecontent {
+    position: absolute;
+    top: 100%;
+    -webkit-animation: scroll 100s linear 5s infinite;
+    -moz-animation: scroll 100s linear 5s infinite;
+    -ms-animation: scroll 100s linear 5s infinite;
+    -o-animation: scroll 100s linear 5s infinite;
+    animation: scroll 100s linear 5s infinite;
+}
+
+/* animation */
+@-webkit-keyframes scroll {
+    0% { top: 100%; }
+    100% { top: -170%; }
+}
+
+@-moz-keyframes scroll {
+    0% { top: 100%; }
+    100% { top: -170%; }
+}
+
+@-ms-keyframes scroll {
+    0% { top: 100%; }
+    100% { top: -170%; }
+}
+
+@-o-keyframes scroll {
+    0% { top: 100%; }
+    100% { top: -170%; }
+}
+
+@keyframes scroll {
+    0% { top: 100%; }
+    100% { top: -170%; }
+}
+/* END - Intro Story Block */
+
+
 /*** STARS ***/
 .main-container {
     display: block;
