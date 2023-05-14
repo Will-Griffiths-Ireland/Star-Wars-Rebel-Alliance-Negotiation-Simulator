@@ -214,11 +214,11 @@ p#start {
 #titlecontent {
     position: absolute;
     top: 100%;
-    -webkit-animation: scroll 100s linear 5s infinite;
-    -moz-animation: scroll 100s linear 5s infinite;
-    -ms-animation: scroll 100s linear 5s infinite;
-    -o-animation: scroll 100s linear 5s infinite;
-    animation: scroll 100s linear 5s infinite;
+    -webkit-animation: scroll 60s linear 5s infinite;
+    -moz-animation: scroll 60s linear 5s infinite;
+    -ms-animation: scroll 60s linear 5s infinite;
+    -o-animation: scroll 60s linear 5s infinite;
+    animation: scroll 60s linear 5s infinite;
 }
 
 /* animation */

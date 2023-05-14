@@ -1,3 +1,4 @@
+/* Audio play/pause with image change */
 var track = document.getElementById('track');
 var controlBtn = document.getElementById('play-pause');
 var muteIcon = document.getElementById("muteIcon");
@@ -22,3 +23,11 @@ track.addEventListener("ended", function() {
   muteIcon.src = "./assets/sprites/soundoff.webp";
   muteIcon.alt = "muted";
 });
+
+/*Change Page after Scroll animation */
+const titles = document.querySelector('#titlecontent');
+const duration = 30000; // change this to the duration of your scroll animation in milliseconds
+
+setTimeout(() => {
+  window.location.href = 'main.html';
+}, duration);
