@@ -126,7 +126,14 @@ function displayGameOver(){
     gameOverMessage.classList.add("nofire");
     gameOverMessage.style.fontSize = "3vw";
 
-    let gameScore = ((currentTime) * (totalTargets - remainingTargets));
+    let gameScore;
+    if(currentTime <= 0){
+        gameScore = totalTargets - remainingTargets;
+    }
+    else{
+        gameScore = ((currentTime) * (totalTargets - remainingTargets));
+    } 
+    
     gameOverMessage.innerHTML = `Your score is ${gameScore}`;
 
     document.getElementById("gameOverDisplay").appendChild(gameOverMessage);
