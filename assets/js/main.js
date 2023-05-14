@@ -2,9 +2,11 @@
 const gamePlayArea = document.getElementById("gamePlayArea");
 
 let musicTrack = {};
-let blasterShots = 6;
+let maxShots = 6;
+let shotsRemaining = 6;
 let totalTargets = 0;
 let remainingTargets = 0; 
+let reloading = false;
 
 // ###### LOAD MUSIC ASSETS ######
 
@@ -65,18 +67,76 @@ function initScoreDisplay(){
     scoreDisplay.setAttribute("id", "scoreDisplay");
     scoreDisplay.setAttribute("draggable", false);
     scoreDisplay.classList.add("interface");
+    scoreDisplay.classList.add("nofire");
     
     gamePlayArea.appendChild(scoreDisplay);
+
+    let scoreNumber = document.createElement('p');
+    scoreNumber.setAttribute("id", "scoreNumber");
+    scoreNumber.classList.add("nofire");
+
+    document.getElementById("scoreDisplay").appendChild(scoreNumber);
 }
 
 function updateScoreDisplay(){
-    let scoreDisplay = document.getElementById("scoreDisplay");
+    let scoreNumber = document.getElementById("scoreNumber");
 
-    scoreDisplay.innerHTML = `<P>targets hit ${totalTargets - remainingTargets} / ${totalTargets} </P>`;
+    scoreNumber.innerHTML = `targets hit ${totalTargets - remainingTargets} / ${totalTargets}`;
 
 }
 
+// add blaster
 
+function initBlasterDisplay(){
+    let blasterDisplay = document.createElement('div');
+    blasterDisplay.setAttribute("id", "blasterDisplay");
+    blasterDisplay.setAttribute("draggable", false);
+    blasterDisplay.classList.add("interface");
+    blasterDisplay.classList.add("nofire");
+    blasterDisplay.addEventListener("click", reloadBlaster);
+    
+    gamePlayArea.appendChild(blasterDisplay);
+
+    let blasterImage = document.createElement('img');
+    blasterImage.src = "./assets/sprites/blaster.webp";
+    blasterImage.style.position = "inline";
+    blasterImage.classList.add("nofire");
+    blasterImage.setAttribute("draggable", false);
+    blasterImage.style.width = "auto";
+    blasterImage.style.height = "3vw";
+    blasterImage.style.zIndex = "1000";
+    blasterImage.addEventListener("click", reloadBlaster);
+
+    document.getElementById("blasterDisplay").appendChild(blasterImage);
+
+    let ammoNumber = document.createElement('p');
+    ammoNumber.setAttribute("id", "ammoNumber");
+    ammoNumber.style.zIndex = "1000";
+    ammoNumber.classList.add("nofire");
+    ammoNumber.addEventListener("click", reloadBlaster);
+
+    document.getElementById("blasterDisplay").appendChild(ammoNumber);
+}
+
+function updateBlasterDisplay(){
+    let ammoNumber = document.getElementById("ammoNumber");
+    ammoNumber.innerHTML = `${shotsRemaining} / ${maxShots}`;
+
+    let blasterDisplay = document.getElementById("blasterDisplay");
+    if(shotsRemaining == 0){
+        blasterDisplay.style.backgroundColor = "#d10404";
+        ammoNumber.style.color = "#FFFFFF";
+        ammoNumber.style.fontSize = "1.5vw";
+        ammoNumber.innerHTML = `click to reload`;
+
+    }
+    else{
+        blasterDisplay.style.backgroundColor = "#b9c0bf";
+        ammoNumber.style.color = "#000000";
+        ammoNumber.style.fontSize = "2vw";
+    }
+
+}
 
 
 
@@ -84,15 +144,48 @@ function updateScoreDisplay(){
 
 // ###### FIRE BLASTER #####
 
-function pullTrigger(){
+function pullTrigger(e){
 
     // shots left?
+    if(e.target.classList.contains("nofire") || reloading){
+        return;
+    }
+
+    if(shotsRemaining > 0){
+        new Audio("assets/sounds/Single_blaster_shot.mp3").play();
+        shotsRemaining--;
+        updateBlasterDisplay();
+    }
+    else
+    {
+        new Audio("assets/sounds/blaster_out.mp3").play();
+        updateBlasterDisplay();
+    }
 
     // if no shots left play click
 
-    //else
+    //els
+    
+}
 
-    new Audio("assets/sounds/Single_blaster_shot.mp3").play();
+function reloadBlaster(){
+
+    //if clip is full do nothing
+    if(shotsRemaining == maxShots){
+        return;
+    }
+    else{
+        //playreload sound
+        reloading = true;
+        let ammoNumber = document.getElementById("ammoNumber");
+        ammoNumber.innerHTML = `reloading...`;
+        ammoNumber.style.fontSize = "1vw";
+        setTimeout(() => {
+            shotsRemaining = maxShots;
+            updateBlasterDisplay();
+            reloading = false;
+        }, 2000);
+    }
 }
 
 //narrator
@@ -261,17 +354,24 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
 
 function destroyTarget(e){
 
+    if(shotsRemaining == 0 || reloading){
+        return;
+    }
+
     let hitTarget = e.target;
-    // need hit sound
-    new Audio("assets/sounds/Single_blaster_shot.mp3").play();
     hitTarget.removeEventListener("click", destroyTarget);
 
     if(hitTarget.classList.contains("trooper")){
         new Audio("assets/sounds/trooperHit.mp3").play();
     }
 
+    if(hitTarget.classList.contains("vader")){
+        new Audio("assets/sounds/vader_die.mp3").play();
+    }
+
     hitTarget.style.animationDelay = "0ms";
     hitTarget.classList.remove("fadeIn");
+
     if(hitTarget.classList.contains("target")){
         hitTarget.classList.add("destroyTarget2");
         remainingTargets--;
@@ -360,6 +460,8 @@ function scatterBoxes(count) {
 addBackground("bg2");
 addTimer(45);
 initScoreDisplay();
+initBlasterDisplay();
+updateBlasterDisplay();
 
 // scatterAssets(65);
 // scatterBoxes(15);
