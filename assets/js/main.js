@@ -243,7 +243,10 @@ function setCountdown(maxSeconds) {
         displayTime.innerHTML = `${timeLeft} sec`;
     if (timeLeft === 0 || gameOver) {
         // Timeout logic goes here
-        displayGameOver();
+        if(!gameOver){
+            gameOver = true;
+            displayGameOver();
+        }
         document.getElementById("timer").classList.remove("timerSpin");
         clearInterval(countdownTimer);
     }
