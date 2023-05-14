@@ -36,6 +36,25 @@ body{
     perspective: 800px;
 }
 
+.fadeIn {
+    animation-name: fadeIn;
+    animation-fill-mode: both;
+    animation-duration: 1000ms;
+    animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        scale: 0;
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
 /* Menu Title */
 .game-title {
     position: relative;
