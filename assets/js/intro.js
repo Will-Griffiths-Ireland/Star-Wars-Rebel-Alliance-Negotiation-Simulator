@@ -29,5 +29,5 @@ const titles = document.querySelector('#titlecontent');
 const duration = 30000; // change this to the duration of your scroll animation in milliseconds
 
 setTimeout(() => {
-  window.location.href = 'main.html';
+  window.location.href = 'menu.html';
 }, duration);
