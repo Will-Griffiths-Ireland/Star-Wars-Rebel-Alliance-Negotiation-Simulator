@@ -110,7 +110,11 @@ body {
   font-family: "Press Start 2P", cursive;
 }
 
-.game-nav-button a {color:#fff;text-decoration: none;}
+a {
+    color:#fff;
+    text-decoration: none;
+}
+
 .game-nav-button:hover, .game-nav-button:focus {
   animation: neon-blue 1.5s ease-in-out infinite alternate;
 outline: none;
