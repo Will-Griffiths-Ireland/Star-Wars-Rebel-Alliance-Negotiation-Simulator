@@ -31,7 +31,7 @@ body {
     grid-gap:1rem;
 }
 
-.game-header, main {
+.game-header, main, footer {
     position: relative;
     z-index: 5;
     perspective: 800px;
@@ -379,4 +379,21 @@ dialog .close-button {
         height: 800px;
     }
     }
-    /*** END - Stars ***/
+/*** END - Stars ***/
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+footer p, footer a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* END - Footer */
