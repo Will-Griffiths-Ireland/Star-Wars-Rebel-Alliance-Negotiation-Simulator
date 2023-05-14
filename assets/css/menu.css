@@ -385,15 +385,19 @@ dialog .close-button {
 /* Footer */
 
 footer {
+    font-family: 'jediFont', monospace;
     text-align: center;
-    width: 80%;
-    margin: 0 auto;
 }
 
 footer p, footer a {
     color: #fff;
     text-decoration: none;
     font-size: 12px;
+}
+
+footer img {
+    max-height: 15px;
+    display: inline-block;
 }
 
 /* END - Footer */
