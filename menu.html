@@ -8,6 +8,7 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
     <meta name="description" content="Star Wars Shooter">
     <meta name="keywords" content="HTML5, CSS3, JavaScript, Star Wars, Shooter">
     <meta name="author" content=" 'Filthy Rebel Scum' - Team 5 CI Hackathon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/menu.css">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/sprites/favicon-32x32.png">
@@ -22,8 +23,72 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
       <div class="comet"></div>
     </div>
   
-<header>
-</header>
+    <header class="game-header">
+        <h1 class="game-title"> 
+          <div class="line-1">Blaster Battles:</div>
+          <div class="line-2">Galactic Showdown</div>
+          <div class="line-3">The Battle Against <Br>the Empire's Arcade Weapon</div>
+        </h1>
+    </header>
+    <main>
+
+    <!-- START BUTTON -->
+    <button class="game-nav-button"><a href="./main.html">Start</a></button>
+
+    <!-- HOW TO PLAY BUTTON -->
+    <button data-open-modal class="game-nav-button">How to Play</button>
+    <dialog id="modalHowToPlay" data-modal>
+        <div class="modal">
+            <button class="btn close-button" data-close-modal>X</button>
+            <h3>How to Play</h3>
+
+            <p>Our website uses cookies to ensure you get the best experience while you're here.</p>
+
+            <button class="btn">Okay</button>
+        </div>
+    </dialog>
+
+    <!-- OPTIONS BUTTON -->
+    <button data-open-modal class="game-nav-button">Options</button>
+    <dialog id="modalOptions" data-modal>
+        <div class="modal">
+            <button class="btn close-button" data-close-modal>X</button>
+
+            <h3>Options Menu</h3>
+
+            <button class="btn">Okay</button>
+
+        </div>
+    </dialog>
+
+    <!-- LEADERBOARDS BUTTON -->
+    <button data-open-modal class="game-nav-button">Leaderboards</button>
+    <dialog id="modalLeaderboard" data-modal>
+        <div class="modal">
+            <button class="btn close-button" data-close-modal>X</button>
+
+            <h3>Leaderboard</h3>
+
+            <p>Our website uses cookies to ensure you get the best experience while you're here.</p>
+
+            <button class="btn">Okay</button>
+        </div>
+    </dialog>
+
+    <!-- CREDITS BUTTON -->
+    <button data-open-modal class="game-nav-button">Credits</button>
+    <dialog id="modalHowToPlay" data-modal>
+        <div class="modal">
+            <button class="btn close-button" data-close-modal>X</button>
+            <h3>Credits</h3>
+
+            <p>Our website uses cookies to ensure you get the best experience while you're here.</p>
+
+            <button class="btn">Okay</button>
+        </div>
+    </dialog>
+
+    </main>
     
     <script src="./assets/js/menu.js"></script>
 </body>
