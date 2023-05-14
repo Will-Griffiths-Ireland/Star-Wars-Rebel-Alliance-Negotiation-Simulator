@@ -1,9 +1,9 @@
-const container = document.getElementById('container');
+const container = document.getElementById('gamePlayArea');
 const sparkleNum = 50;
 const radius = 2;
 const height = 10;
 const width = 3;
-const color = ['blue']
+const color = ['red']
 let maxHeight = 40;
 let target = true;
 
@@ -52,6 +52,7 @@ function grabSparkles(){
 const slice = 360 / sparkleNum;
 let i = 0;
 function sparklesProperties(height, width, color) {
+    console.log('click')
     grabSparkles().forEach(sparkle => {  
         const deg = (360 / sparkleNum) * i;
         sparkle.style.transformOrigin = `center top`;
@@ -117,9 +118,9 @@ container.addEventListener('mousemove', (event) => {
 
 
 container.addEventListener('mousedown', (event) => {
-    const x =  getPos(event).x
-    const y =  getPos(event).y
-    maxHeight = maxHeight * (y / window.innerHeight) + 10
+    const x =  getPos(event).x;
+    const y =  getPos(event).y;
+    maxHeight = maxHeight * (y / window.innerHeight) + 10;
     sparkleAroundMouse(event, x, y, radius);
 })
 
