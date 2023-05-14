@@ -286,6 +286,18 @@ img {
     filter: drop-shadow(.5vw .5vw .5vw);
 }
 
+#narratorDisplay{
+    top: 2vh;
+    left: 2vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 35vh;
+    font-size: auto;
+}
 
  #scoreDisplay{
     

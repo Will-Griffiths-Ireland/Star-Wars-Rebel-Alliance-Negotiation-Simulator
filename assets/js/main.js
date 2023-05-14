@@ -11,7 +11,7 @@ let remainingTargets = 0;
 let reloading = false;
 let gameOver = false;
 let soundLevel = .5;
-let musicLevel = 1;
+let musicLevel = .2;
 let currentTime = 0;
 
 // ###### AUDIO FUNCTIONS ######
@@ -19,7 +19,7 @@ let currentTime = 0;
 function initMusic(){
 
     if(!musicOn){
-        musicTrack = new Audio('kim-lightyear-legends-109307.mp3');
+        musicTrack = new Audio('assets/music/kim-lightyear-legends-109307.mp3');
         musicTrack.volume = musicLevel;
         musicTrack.play();
         musicTrack.loop = true;
@@ -122,7 +122,7 @@ function updateAudioControls(e){
         else{
             e.target.src = "assets/sprites/musicon.webp";
             
-            musicLevel = 1;
+            musicLevel = .2;
             initMusic();
             musicOn = true;
         }
@@ -376,6 +376,40 @@ function reloadBlaster(){
 
 addProp(5, 5, "droid_face", 10, false);
 
+function initNarrator(){
+
+    let narratorDisplay = document.createElement('div');
+    narratorDisplay.setAttribute("id", "narratorDisplay");
+    narratorDisplay.setAttribute("draggable", false);
+    narratorDisplay.classList.add("interface");
+    narratorDisplay.classList.add("nofire");
+    narratorDisplay.addEventListener("click", reloadBlaster);
+    
+    gamePlayArea.appendChild(narratorDisplay);
+
+    let narratorImage = document.createElement('img');
+    narratorImage.src = "./assets/sprites/Droidface.webp";
+    narratorImage.style.position = "inline";
+    narratorImage.classList.add("nofire");
+    narratorImage.setAttribute("draggable", false);
+    narratorImage.style.width = "auto";
+    narratorImage.style.height = "12vh";
+    narratorImage.style.zIndex = "1000";
+
+    document.getElementById("narratorDisplay").appendChild(narratorImage);
+
+    let narratorMessage = document.createElement('p');
+    narratorMessage.setAttribute("id", "narratorMessage");
+    narratorMessage.style.zIndex = "5000";
+    narratorMessage.classList.add("nofire");
+    narratorMessage.classList.add("fadeIn");
+    narratorMessage.style.fontSize = "1vw";
+
+    narratorMessage.innerHTML = `Well this is an excellent test of your skills pilot. Make the most of your time here today`;
+
+    document.getElementById("narratorDisplay").appendChild(narratorMessage);
+}
+
 //blaster info
 
 
@@ -625,6 +659,7 @@ function scatterBoxes(count) {
 
 addBackground("bg2");
 initAudioControls()
+initNarrator();
 addTimer(200);
 initScoreDisplay();
 initBlasterDisplay();
