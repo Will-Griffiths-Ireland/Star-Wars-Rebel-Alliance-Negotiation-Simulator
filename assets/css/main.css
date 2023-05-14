@@ -289,12 +289,25 @@ img {
 
  #scoreDisplay{
     
-    top: 2vh;
+    top: 1vw;
     left: 37.5vw;
     text-align: center;
     justify-content: center;
     width: 25vw;
-    height: auto;
+    height: 4vw;
+    font-size: 2vw;
+
+}
+
+#audioControlsDisplay{
+
+    top: 1vw;
+    left: 70vw;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 4vw;
     font-size: 2vw;
 
 }

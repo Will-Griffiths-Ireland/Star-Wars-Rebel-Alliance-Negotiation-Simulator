@@ -2,6 +2,8 @@
 const gamePlayArea = document.getElementById("gamePlayArea");
 
 let musicTrack = {};
+let musicOn = false;
+let soundOn = true;
 let maxShots = 6;
 let shotsRemaining = 6;
 let totalTargets = 0;
@@ -9,18 +11,19 @@ let remainingTargets = 0;
 let reloading = false;
 let gameOver = false;
 let soundLevel = .5;
-let musicLevel = 0;
+let musicLevel = 1;
 let currentTime = 0;
 
 // ###### AUDIO FUNCTIONS ######
 
 function initMusic(){
 
-    if(Object.keys(musicTrack).length === 0){
-        musicTrack = new Audio('assets/music/chiptune-grooving-142242.mp3');
+    if(!musicOn){
+        musicTrack = new Audio('kim-lightyear-legends-109307.mp3');
         musicTrack.volume = musicLevel;
         musicTrack.play();
         musicTrack.loop = true;
+        musicOn = true;
     }
     else{
         
@@ -65,19 +68,81 @@ gamePlayArea.addEventListener("click", pullTrigger)
 
 // add music icon
 
-let musicIcon = document.createElement('img');
-musicIcon.src = "assets/sprites/musicon.webp";
-musicIcon.style.position = "absolute";
-musicIcon.setAttribute("id", "musicIcon");
-musicIcon.setAttribute("draggable", false);
-musicIcon.style.top = "2vh";
-musicIcon.style.left = "80vw";
-musicIcon.style.width = "5vw";
-musicIcon.style.height = "auto";
-musicIcon.style.zIndex = "1000";
-musicIcon.classList = "fadeIn";
+function initAudioControls(){
+    
+    let audioControlsDisplay = document.createElement('div');
+    audioControlsDisplay.setAttribute("id", "audioControlsDisplay");
+    audioControlsDisplay.setAttribute("draggable", false);
+    audioControlsDisplay.classList.add("interface");
+    audioControlsDisplay.classList.add("nofire");
+    
+    gamePlayArea.appendChild(audioControlsDisplay);
 
-gamePlayArea.appendChild(musicIcon);
+
+    let musicIcon = document.createElement('img');
+    musicIcon.src = "assets/sprites/musicon.webp";
+    musicIcon.classList.add("nofire");
+    musicIcon.style.position = "inline";
+    musicIcon.setAttribute("id", "musicIcon");
+    musicIcon.setAttribute("draggable", false);
+    musicIcon.style.width = "3.5vw";
+    musicIcon.style.height = "auto";
+    musicIcon.style.zIndex = "1000";
+    musicIcon.addEventListener("click", updateAudioControls)
+
+    let soundIcon = document.createElement('img');
+    soundIcon.src = "assets/sprites/soundon.webp";
+    soundIcon.style.position = "inline";
+    soundIcon.classList.add("nofire");
+    soundIcon.setAttribute("id", "soundIcon");
+    soundIcon.setAttribute("draggable", false);
+    soundIcon.style.width = "3.5vw";
+    soundIcon.style.height = "auto";
+    soundIcon.style.zIndex = "1000";
+    soundIcon.addEventListener("click", updateAudioControls)
+
+    document.getElementById("audioControlsDisplay").appendChild(musicIcon);
+    document.getElementById("audioControlsDisplay").appendChild(soundIcon);
+
+}
+
+function updateAudioControls(e){
+
+    let musicIcon = document.getElementById("musicIcon");
+    let soundIcon = document.getElementById("soundIcon");
+
+    if(e.target.id == "musicIcon"){
+        console.log("Music icon detected");
+        if(musicOn){
+            e.target.src = "assets/sprites/musicoff.webp";
+            musicLevel = 0;
+            initMusic();
+            musicOn = false;
+        }
+        else{
+            e.target.src = "assets/sprites/musicon.webp";
+            
+            musicLevel = 1;
+            initMusic();
+            musicOn = true;
+        }
+    }
+
+    if(e.target.id == "soundIcon"){
+        if(soundOn){
+            e.target.src = "assets/sprites/soundoff.webp";
+            soundLevel = 0;
+            soundOn = false;
+        }
+        else{
+            e.target.src = "assets/sprites/soundon.webp";
+            soundLevel = 1;
+            soundOn = true;
+        }
+    }
+}
+
+
 
 // add score display
 
@@ -559,7 +624,8 @@ function scatterBoxes(count) {
 // GAME START
 
 addBackground("bg2");
-addTimer(30);
+initAudioControls()
+addTimer(200);
 initScoreDisplay();
 initBlasterDisplay();
 updateBlasterDisplay();
