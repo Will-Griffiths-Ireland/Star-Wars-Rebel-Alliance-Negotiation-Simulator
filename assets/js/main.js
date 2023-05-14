@@ -332,3 +332,5 @@ addTarget(72, 62, "droid2", 6, true, "vibrating");
 addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
 addTarget(64, 50, "trooper", 4, true, "dancing",);
 
+
+
