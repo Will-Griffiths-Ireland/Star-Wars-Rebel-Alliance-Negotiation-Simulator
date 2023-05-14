@@ -1,3 +1,257 @@
+*,
+*::before,
+*::after{box-sizing:border-box;}
+
+:root {
+  --blue: #4df;
+  --green: #0F0;
+  --red: #F00;
+  --yellow:#FF0;
+  --purple: #c0c;
+  --dark-blue: #0052ff;
+}
+
+html{
+  overflow:hidden;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
+
+body{
+  font-size:16px; 
+  font-family: "Press Start 2P", cursive;
+}
+
+.grid {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    align-content: center;
+    grid-gap:1rem;
+}
+
+.game-header, main {
+    position: relative;
+    z-index: 5;
+    perspective: 800px;
+}
+
+/* Menu Title */
+.game-title {
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
+    transform: rotateX(21deg);
+    margin-bottom: 40px;
+    color: #000;
+    text-shadow: -2px -2px 0 #fefe08, 2px -2px 0 #fefe08, -2px 2px 0 #fefe08, 2px 2px 0 #fefe08;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -4px;
+    text-align: center
+}
+
+.game-title .line-1 {
+    font-size: 3rem;
+    letter-spacing: -2px;
+}
+
+.game-title .line-2 {
+    font-size: 2rem;
+}
+
+.game-title .line-3 {
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color:#fff;
+    text-shadow: 2px 1px 0px #d2d2d2, 4px 2px 0px #4f3256, 3px 1px 6px #000000;
+    margin-top: 10px;
+}
+/* END - Menu Title */
+
+
+/* Menu Buttons */
+.game-nav-button {
+  display: block;
+  padding:12px 40px;
+  border: solid 2px rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:1rem;
+  font-family: "Press Start 2P", cursive;
+}
+
+.game-nav-button a {color:#fff;text-decoration: none;}
+.game-nav-button:hover, .game-nav-button:focus {
+  animation: neon-blue 1.5s ease-in-out infinite alternate;
+outline: none;
+}
+
+@keyframes neon-blue {
+  from {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--blue), 0 0 35px var(--blue), 0 0 40px var(--blue), 0 0 50px var(--blue), 0 0 75px var(--blue);
+  }
+  to {
+    box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--blue), 0 0 17px var(--blue), 0 0 20px var(--blue), 0 0 25px var(--blue), 0 0 37px var(--blue);
+  }
+}
+
+.game-nav-button:nth-child(1):hover, .game-nav-button:nth-child(1):focus {
+  animation: neon-green 1.5s ease-in-out infinite alternate;
+  outline: none;
+}
+
+@keyframes neon-green {
+    from {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--green), 0 0 35px var(--green), 0 0 40px var(--green), 0 0 50px var(--green), 0 0 75px var(--green);
+    }
+    to {
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--green), 0 0 17px var(--green), 0 0 20px var(--green), 0 0 25px var(--green), 0 0 37px var(--green);
+    }
+  }
+
+
+.game-nav-button:nth-child(2):hover, .game-nav-button:nth-child(2):focus {
+  animation: neon-dark-blue 1.5s ease-in-out infinite alternate;
+  outline: none;
+}
+
+@keyframes neon-dark-blue {
+    from {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--dark-blue), 0 0 35px var(--dark-blue), 0 0 40px var(--dark-blue), 0 0 50px var(--dark-blue), 0 0 75px var(--dark-blue);
+    }
+    to {
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--dark-blue), 0 0 17px var(--dark-blue), 0 0 20px var(--dark-blue), 0 0 25px var(--dark-blue), 0 0 37px var(--dark-blue);
+    }
+  }
+
+.game-nav-button:nth-child(3):hover, .game-nav-button:nth-child(3):focus {
+  animation: neon-red 1.5s ease-in-out infinite alternate;
+  outline: none;
+}
+
+@keyframes neon-red {
+    from {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--red), 0 0 35px var(--red), 0 0 40px var(--red), 0 0 50px var(--red), 0 0 75px var(--red);
+    }
+    to {
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--red), 0 0 17px var(--red), 0 0 20px var(--red), 0 0 25px var(--red), 0 0 37px var(--red);
+    }
+  }
+
+.game-nav-button:nth-child(4):hover, .game-nav-button:nth-child(4):focus {
+  animation: neon-purple 1.5s ease-in-out infinite alternate;
+  outline: none;
+}
+
+@keyframes neon-purple {
+    from {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--purple), 0 0 35px var(--purple), 0 0 40px var(--purple), 0 0 50px var(--purple), 0 0 75px var(--purple);
+    }
+    to {
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--purple), 0 0 17px var(--purple), 0 0 20px var(--purple), 0 0 25px var(--purple), 0 0 37px var(--purple);
+    }
+  }
+
+.game-nav-button:nth-child(5):hover, .game-nav-button:nth-child(5):focus {
+  animation: neon-yellow 1.5s ease-in-out infinite alternate;
+  outline: none;
+}
+
+@keyframes neon-yellow {
+    from {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--yellow), 0 0 35px var(--yellow), 0 0 40px var(--yellow), 0 0 50px var(--yellow), 0 0 75px var(--yellow);
+    }
+    to {
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--yellow), 0 0 17px var(--yellow), 0 0 20px var(--yellow), 0 0 25px var(--yellow), 0 0 37px var(--yellow);
+    }
+  }
+/* END - Menu Buttons */
+
+
+/* DIALOG / MODAL */
+dialog {
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px 2px rgba(128, 128, 128, 0.1);    
+    padding:0;
+    margin:0;
+}
+
+.btn {
+    font-family: "Press Start 2P", cursive;
+    width: 25vw;
+    height: auto;
+    font-size: 1rem;
+    padding: 0.5vw;
+    border-radius: 2vh;
+    border-style: solid;
+    border-width: 0.2vw;
+    background-color: #b9c0bf;
+    filter: drop-shadow(0.5vw 0.5vw 0.5vw);
+    margin-bottom: 1rem;
+}
+
+.btn:hover, .btn:active {
+    filter: none;
+    transform: translateY(5px);
+    transition: all .25s;
+}
+
+.modal {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 3rem;
+    box-sizing: border-box;
+    max-width:40vw;
+}
+
+dialog p {
+    margin: 0 0 2rem;
+    padding: 1rem;
+}
+
+dialog .close-button {
+    position: absolute;
+    top: 10px;
+    right:10px;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    padding:10px;
+    cursor: pointer;
+    width: auto;
+}
+/* END - DIALOG / MODAL */
+
+
+
+/***** MEDIA QUERIES *****/
+@media (max-width:768px){
+  dialog {width:90%;}
+  .modal {max-width:auto;}
+}
+
+
 /*** STARS ***/
 .main-container {
     display: block;
