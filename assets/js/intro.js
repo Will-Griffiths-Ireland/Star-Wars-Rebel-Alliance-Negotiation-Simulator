@@ -28,7 +28,11 @@ track.addEventListener("ended", function() {
 
 /*Change Page after Scroll animation */
 const titles = document.querySelector('#titlecontent');
+<<<<<<< HEAD
 const duration = 40000; // change this to the duration of your scroll animation in milliseconds
+=======
+const duration = 38000; // change this to the duration of your scroll animation in milliseconds
+>>>>>>> 239487305964d11a457ec40f42b48e4ff9443ca4
 
 setTimeout(() => {
   window.location.href = 'menu.html';
