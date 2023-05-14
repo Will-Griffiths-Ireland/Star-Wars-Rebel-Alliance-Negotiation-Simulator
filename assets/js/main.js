@@ -6,6 +6,7 @@ let maxShots = 6;
 let shotsRemaining = 6;
 let totalTargets = 0;
 let remainingTargets = 0; 
+let reloading = false;
 
 // ###### LOAD MUSIC ASSETS ######
 
@@ -146,7 +147,7 @@ function updateBlasterDisplay(){
 function pullTrigger(e){
 
     // shots left?
-    if(e.target.classList.contains("nofire")){
+    if(e.target.classList.contains("nofire") || reloading){
         return;
     }
 
@@ -175,12 +176,14 @@ function reloadBlaster(){
     }
     else{
         //playreload sound
+        reloading = true;
         let ammoNumber = document.getElementById("ammoNumber");
         ammoNumber.innerHTML = `reloading...`;
         ammoNumber.style.fontSize = "1vw";
         setTimeout(() => {
             shotsRemaining = maxShots;
             updateBlasterDisplay();
+            reloading = false;
         }, 2000);
     }
 }
@@ -351,7 +354,7 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
 
 function destroyTarget(e){
 
-    if(shotsRemaining == 0){
+    if(shotsRemaining == 0 || reloading){
         return;
     }
 
