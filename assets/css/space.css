@@ -1,0 +1,31 @@
+.fly-left {
+    animation-name: fly-left;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+}
+
+.fly-right {
+    animation-name: fly-right;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+}
+
+@keyframes fly-left {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left :100%;
+    }
+}
+
+@keyframes fly-right {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
