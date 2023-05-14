@@ -2,9 +2,11 @@
 var track = document.getElementById('track');
 var controlBtn = document.getElementById('play-pause');
 var muteIcon = document.getElementById("muteIcon");
+track.volume = .2;
 
 function playPause() {
   if (track.paused) {
+    ;
     track.play();
     controlBtn.className = "pause";
     muteIcon.src = "./assets/sprites/soundon.webp";
@@ -26,8 +28,8 @@ track.addEventListener("ended", function() {
 
 /*Change Page after Scroll animation */
 const titles = document.querySelector('#titlecontent');
-const duration = 30000; // change this to the duration of your scroll animation in milliseconds
+const duration = 40000; // change this to the duration of your scroll animation in milliseconds
 
 setTimeout(() => {
-  window.location.href = 'main.html';
+  window.location.href = 'menu.html';
 }, duration);

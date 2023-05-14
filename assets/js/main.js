@@ -372,10 +372,6 @@ function reloadBlaster(){
     }
 }
 
-//narrator
-
-addProp(5, 5, "droid_face", 10, false);
-
 function initNarrator(){
 
     let narratorDisplay = document.createElement('div');
