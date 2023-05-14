@@ -7,15 +7,32 @@ let shotsRemaining = 6;
 let totalTargets = 0;
 let remainingTargets = 0; 
 let reloading = false;
+let soundLevel = .5;
+let musicLevel = 0;
+let currentTime = 0;
 
-// ###### LOAD MUSIC ASSETS ######
+// ###### AUDIO FUNCTIONS ######
 
-musicTrack = new Audio('assets/music/music-for-arcade-style-game-146875.mp3');
-musicTrack.play();
-musicTrack.loop = true;
-musicTrack.volume = 0.0;
-// gamePlayArea.appendChild(musicTrack);
+function initMusic(){
 
+    if(Object.keys(musicTrack).length === 0){
+        musicTrack = new Audio('assets/music/chiptune-grooving-142242.mp3');
+        musicTrack.volume = musicLevel;
+        musicTrack.play();
+        musicTrack.loop = true;
+    }
+    else{
+        
+        musicTrack.volume = musicLevel;
+    }
+
+}
+
+function playSound(file){
+    tempSound = new Audio(`assets/sounds/${file}.mp3`);
+    tempSound.volume = soundLevel;
+    tempSound.play();
+}
 
 // ###### HELPER FUNCTIONS ######
 
@@ -126,7 +143,7 @@ function updateBlasterDisplay(){
     if(shotsRemaining == 0){
         blasterDisplay.style.backgroundColor = "#d10404";
         ammoNumber.style.color = "#FFFFFF";
-        ammoNumber.style.fontSize = "1.5vw";
+        ammoNumber.style.fontSize = "1vw";
         ammoNumber.innerHTML = `click to reload`;
 
     }
@@ -138,6 +155,52 @@ function updateBlasterDisplay(){
 
 }
 
+//timer info
+
+function addTimer(maxSeconds) {
+    const timerDisplay = document.createElement('div');
+    timerDisplay.setAttribute('id', 'timerDisplay');
+    timerDisplay.classList.add("interface");
+
+    let timerImage = document.createElement('img');
+    timerImage.src = "./assets/sprites/timer.webp";
+    timerImage.style.position = "inline";
+    timerImage.classList.add("nofire");
+    timerImage.classList.add("timerSpin");
+    timerImage.setAttribute("draggable", false);
+    timerImage.style.width = "auto";
+    timerImage.style.height = "4vw";
+    timerImage.style.zIndex = "1000";
+
+    timerDisplay.appendChild(timerImage);
+
+    const countdown = document.createElement('p');
+    countdown.setAttribute('id', 'countdown');
+    countdown.innerHTML = `${maxSeconds} sec`;
+    countdown.classList.add("nofire");
+    countdown.style.fontSize = "1.5vw";
+    timerDisplay.appendChild(countdown);
+
+    gamePlayArea.appendChild(timerDisplay);
+
+    setCountdown(maxSeconds)
+}
+
+function setCountdown(maxSeconds) {
+    timeLeft = maxSeconds
+    var countdownTimer = setInterval(function(){
+        timeLeft--
+        currentTime = timeLeft
+        displayTime = document.getElementById('countdown')
+        displayTime.innerHTML = `${timeLeft} sec`;
+    if (timeLeft === 0) {
+        // Timeout logic goes here
+        //eng game function
+        clearInterval(countdownTimer);
+    }
+    }, 1000);
+}
+
 
 
 
@@ -146,36 +209,33 @@ function updateBlasterDisplay(){
 
 function pullTrigger(e){
 
-    // shots left?
+    // if we are reloading or over a no fire zone then do nothing
     if(e.target.classList.contains("nofire") || reloading){
         return;
     }
 
     if(shotsRemaining > 0){
-        new Audio("assets/sounds/Single_blaster_shot.mp3").play();
+        playSound("blaster_fire");
         shotsRemaining--;
         updateBlasterDisplay();
     }
     else
     {
-        new Audio("assets/sounds/blaster_out.mp3").play();
+        playSound("blaster_out");
         updateBlasterDisplay();
     }
 
-    // if no shots left play click
-
-    //els
     
 }
 
 function reloadBlaster(){
 
     //if clip is full do nothing
-    if(shotsRemaining == maxShots){
+    if(shotsRemaining == maxShots || reloading){
         return;
     }
     else{
-        //playreload sound
+        playSound("blaster_reload")
         reloading = true;
         let ammoNumber = document.getElementById("ammoNumber");
         ammoNumber.innerHTML = `reloading...`;
@@ -196,32 +256,7 @@ addProp(5, 5, "droid_face", 10, false);
 
 
 
-//timer info
-function addTimer(maxSeconds) {
-    const timerDiv = document.createElement('div');
-    timerDiv.setAttribute('id', 'timer');
 
-    const countdown = document.createElement('p');
-    countdown.innerHTML = `<span id="countdown">${maxSeconds}</span> SEC`;
-    timerDiv.appendChild(countdown);
-
-    gamePlayArea.appendChild(timerDiv);
-
-    setCountdown(maxSeconds)
-}
-
-function setCountdown(maxSeconds) {
-    timeLeft = maxSeconds
-    var countdownTimer = setInterval(function(){
-        timeLeft--
-        displayTime = document.getElementById('countdown')
-        displayTime.innerText = timeLeft;
-    if (timeLeft === 0) {
-        // Timeout logic goes here
-        clearInterval(countdownTimer);
-    }
-    }, 1000);
-}
 
 //ADD SCENE PROPS
 
@@ -294,7 +329,7 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
 
     switch(type) {
         case "droid1":
-            imgPath = "./assets/sprites/bad_droid";
+            imgPath = "./assets/sprites/bad_droid.webp";
             break;
         case "trooper":
             imgPath = "./assets/sprites/StormTrooper.webp";
@@ -362,11 +397,19 @@ function destroyTarget(e){
     hitTarget.removeEventListener("click", destroyTarget);
 
     if(hitTarget.classList.contains("trooper")){
-        new Audio("assets/sounds/trooperHit.mp3").play();
+        playSound("trooper_die");
     }
 
     if(hitTarget.classList.contains("vader")){
-        new Audio("assets/sounds/vader_die.mp3").play();
+        playSound("vader_die");
+    }
+
+    if(hitTarget.classList.contains("ewok")){
+        playSound("ewok_die");
+    }
+
+    if(hitTarget.classList.contains("droid1")){
+        playSound("droid_die");
     }
 
     hitTarget.style.animationDelay = "0ms";
@@ -458,10 +501,11 @@ function scatterBoxes(count) {
 // GAME START
 
 addBackground("bg2");
-addTimer(45);
+addTimer(60);
 initScoreDisplay();
 initBlasterDisplay();
 updateBlasterDisplay();
+initMusic();
 
 // scatterAssets(65);
 // scatterBoxes(15);
@@ -472,7 +516,7 @@ addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
 addProp(30, 75, "box", 7, true);
 addProp(40, 75, "box", 7, true);
 addTarget(60, 70, "droid2", 8, true, "jumping", 0, 1300);
-addTarget(50, 70, "vader", 20, true, "evading", 90, 2345);
+addTarget(50, 70, "vader", 15, true, "evading", 90, 2345);
 addTarget(25, 80, "ewok", 8, true, "jumping", 90);
 addProp(65, 79, "barrier", 15, true);
 addProp(10, 79, "barrier2", 15, true);
@@ -493,7 +537,7 @@ addProp(45, 60, "box", 5, false);
 addProp(50, 60, "box", 5, false);
 addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
 addProp(55, 60, "box", 5, true);
-addTarget(72, 62, "droid2", 6, true, "vibrating");
+addTarget(72, 62, "droid1", 6, true, "vibrating");
 addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
 addTarget(64, 50, "trooper", 4, true, "dancing",);
 

@@ -13,6 +13,12 @@
     margin: 0;
     padding:0;
     font-family: 'jediFont';
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 p {
@@ -272,7 +278,7 @@ img {
  #scoreDisplay{
     
     top: 2vh;
-    left: 50vw;
+    left: 37.5vw;
     text-align: center;
     justify-content: center;
     width: 25vw;
@@ -282,14 +288,51 @@ img {
 }
 
 #blasterDisplay {
-    top: 10vh;
-    left: 85vw;
+    top: 20vh;
+    right: 2vw;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     justify-content: center;
-    width: 10vw;
-    height: 10vw;
+    width: 8vw;
+    height: 8vw;
     font-size: auto;
+}
+
+#timerDisplay {
+    top: 2vh;
+    right: 2vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 8vw;
+    height: 8vw;
+    font-size: auto;
+}
+
+.timerSpin{
+    animation-name: timerSpin;
+    animation-fill-mode: both;
+    animation-duration: 5s;
+    animation-timing-function:linear;
+    animation-direction:normal;
+    animation-iteration-count: infinite;
+}
+
+@keyframes timerSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(180deg);;
+    }
+    100% {
+        transform: rotate(180deg);;
+    }
+
+
+
 }
