@@ -209,6 +209,7 @@ function addTimer(maxSeconds) {
     timerDisplay.classList.add("fadeIn");
 
     let timerImage = document.createElement('img');
+    timerImage.setAttribute('id', 'timer');
     timerImage.src = "./assets/sprites/timer.webp";
     timerImage.style.position = "inline";
     timerImage.classList.add("nofire");
@@ -242,7 +243,8 @@ function setCountdown(maxSeconds) {
         displayTime.innerHTML = `${timeLeft} sec`;
     if (timeLeft === 0 || gameOver) {
         // Timeout logic goes here
-        //eng game function
+        displayGameOver();
+        document.getElementById("timer").classList.remove("timerSpin");
         clearInterval(countdownTimer);
     }
     }, 1000);
@@ -547,7 +549,7 @@ function scatterBoxes(count) {
 // GAME START
 
 addBackground("bg2");
-addTimer(60);
+addTimer(30);
 initScoreDisplay();
 initBlasterDisplay();
 updateBlasterDisplay();
