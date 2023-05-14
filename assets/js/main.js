@@ -673,7 +673,8 @@ function scatterBoxes(count) {
 
 // GAME START
 
-addBackground("bg2");
+// Responsive bg has written into css and that's way it not necessary.
+// addBackground("bg2");
 initAudioControls()
 initNarrator();
 addTimer(60);

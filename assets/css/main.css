@@ -395,3 +395,111 @@ img {
     height: 100vh;
     width: 100vw;
 }
+
+
+/* Responsible game background */
+
+/* Game background */
+#gameWindow {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+
+#gameWindow #game-bg {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 2fr 1fr 2fr;
+}
+
+#gameWindow #game-bg .bg-itme{
+    position: relative;
+    overflow: hidden;
+    background-color: #aeaeae;
+   
+}
+
+#gameWindow #game-bg .bg-itme .first-line::before,
+#gameWindow #game-bg .bg-itme .second-line::before,
+#gameWindow #game-bg .bg-itme .third-line::before,
+#gameWindow #game-bg .bg-itme .fourth-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top right, transparent 50%, #000000 10%);
+    transform-origin: bottom left;
+}
+
+
+#gameWindow #game-bg .bg-itme .first-line::after,
+#gameWindow #game-bg .bg-itme .second-line::after,
+#gameWindow #game-bg .bg-itme .third-line::after,
+#gameWindow #game-bg .bg-itme .fourth-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top right, transparent 51%, #aeaeae 10%);
+    transform-origin: bottom left;
+}
+
+
+#gameWindow #game-bg .bg-itme .second-line::before {
+    background: linear-gradient(to bottom right, transparent 50%, #000000 10%);
+}
+    
+#gameWindow #game-bg .bg-itme .second-line::after {
+    background: linear-gradient(to bottom right, transparent 51%, #aeaeae 10%);
+}
+
+
+#gameWindow #game-bg .bg-itme .third-line::before {
+    background: linear-gradient(to bottom right, transparent 50%, #000000 10%);
+}
+    
+#gameWindow #game-bg .bg-itme .third-line::after {
+    background: linear-gradient(to bottom right, transparent 51%, #aeaeae 10%);
+}
+
+#gameWindow #game-bg .bg-itme:nth-child(5) {
+    border: 3px solid black;
+    background-image: url('../backgrounds/game-center-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+/* Lamps */
+#gameWindow #game-bg .bg-itme-02 {
+    position: relative;
+}
+
+#gameWindow #game-bg .bg-itme-02 .lamps{
+    position: absolute;
+}
+
+#gameWindow #game-bg .bg-itme-02 .lamp01 {
+  scale: 0.9
+}
+
+#gameWindow #game-bg .bg-itme-02 .lamp02 {
+    top: 50%;
+    right: 10%;
+    scale: 0.8;
+}
+
+#gameWindow #game-bg .bg-itme-02 .lamp03 {
+    top: 40%;
+    left: 20%;
+    scale: 0.4;
+  
+}
