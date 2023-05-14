@@ -90,25 +90,43 @@ p#start {
 
 
 /* Intro Title */
-.title h1 {
-    font-size: 25vh;
-    line-height: 0.8em;
-    letter-spacing: 0;
-    color: #000;
-    text-shadow: -2px -2px 0 #fefe08, 2px -2px 0 #fefe08, -2px 2px 0 #fefe08, 2px 2px 0 #fefe08;
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.game-header {
+    position: relative;
+    z-index: 5;
+    perspective: 800px;
 }
 
-.title h1 sub {
-    display: inline-block;
-    font-size: 24px;
-    letter-spacing: -0.2em;
+.game-title {
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
+    transform: rotateX(21deg);
+    margin-bottom: 40px;
+    color: #000;
+    text-shadow: -2px -2px 0 #fefe08, 2px -2px 0 #fefe08, -2px 2px 0 #fefe08, 2px 2px 0 #fefe08;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -4px;
+    text-align: center
+}
+
+.game-title .line-1 {
+    font-size: 3rem;
+    letter-spacing: -2px;
+}
+
+.game-title .line-2 {
+    font-size: 2rem;
+}
+
+.game-title .line-3 {
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color:#fff;
+    text-shadow: 2px 1px 0px #d2d2d2, 4px 2px 0px #4f3256, 3px 1px 6px #000000;
+    margin-top: 10px;
 }
 
 .title {
