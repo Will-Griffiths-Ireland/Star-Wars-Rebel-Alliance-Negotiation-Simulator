@@ -115,7 +115,7 @@ p#start {
     margin-bottom: 40px;
     color: #000;
     text-shadow: -2px -2px 0 #fefe08, 2px -2px 0 #fefe08, -2px 2px 0 #fefe08, 2px 2px 0 #fefe08;
-    font-size: 3rem;
+    font-size: 8vh;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -4px;
@@ -123,16 +123,16 @@ p#start {
 }
 
 .game-title .line-1 {
-    font-size: 3rem;
+    font-size: 8vh;
     letter-spacing: -2px;
 }
 
 .game-title .line-2 {
-    font-size: 2rem;
+    font-size: 6vh;
 }
 
 .game-title .line-3 {
-    font-size: 1rem;
+    font-size: 3vh;
     font-weight: normal;
     letter-spacing: 0px;
     color:#fff;
@@ -197,7 +197,7 @@ p#start {
     bottom: 0;
     left: 50%;
     margin-left: -9em;
-    font-size: 10vh;
+    font-size: 8vh;
     text-align: justify;
     overflow: hidden;
     -webkit-transform-origin: 50% 100%;
