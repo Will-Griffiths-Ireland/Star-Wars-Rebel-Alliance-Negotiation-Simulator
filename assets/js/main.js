@@ -7,6 +7,7 @@ let shotsRemaining = 6;
 let totalTargets = 0;
 let remainingTargets = 0; 
 let reloading = false;
+let gameOver = false;
 let soundLevel = .5;
 let musicLevel = 0;
 let currentTime = 0;
@@ -48,9 +49,10 @@ function addBackground(backgroundNo){
     const bg = document.createElement('img');
     bg.src = `./assets/backgrounds/${backgroundNo}.webp`;
     bg.style.position = "absolute";
-    bg.style.top = 0;
-    bg.style.left = 0;
+    bg.style.top = "0";
+    bg.style.left = "0";
     bg.style.width = "100vw";
+    bg.classList.add("fadeIn");
     gamePlayArea.appendChild(bg);
 
 }
@@ -95,10 +97,51 @@ function initScoreDisplay(){
     document.getElementById("scoreDisplay").appendChild(scoreNumber);
 }
 
+//gameover display
+
+function displayGameOver(){
+
+    gamePlayArea.removeEventListener("click", pullTrigger);
+
+    // mask background
+
+    let backgroundMask = document.createElement('div');
+    backgroundMask.setAttribute("id", "backgroundMask");
+    backgroundMask.setAttribute("draggable", false);
+    backgroundMask.style.zIndex = "2500";
+    gamePlayArea.appendChild(backgroundMask);
+
+    let gameOverDisplay = document.createElement('div');
+    gameOverDisplay.setAttribute("id", "gameOverDisplay");
+    gameOverDisplay.setAttribute("draggable", false);
+    gameOverDisplay.classList.add("interface");
+    gameOverDisplay.classList.add("nofire");
+    gameOverDisplay.style.zIndex = "5000";
+    
+    gamePlayArea.appendChild(gameOverDisplay);
+
+    let gameOverMessage = document.createElement('p');
+    gameOverMessage.setAttribute("id", "gameOverMessage");
+    gameOverMessage.style.zIndex = "5000";
+    gameOverMessage.classList.add("nofire");
+    gameOverMessage.style.fontSize = "3vw";
+
+    let gameScore = ((currentTime) * (totalTargets - remainingTargets));
+    gameOverMessage.innerHTML = `Your score is ${gameScore}`;
+
+    document.getElementById("gameOverDisplay").appendChild(gameOverMessage);
+
+}
+
 function updateScoreDisplay(){
     let scoreNumber = document.getElementById("scoreNumber");
 
     scoreNumber.innerHTML = `targets hit ${totalTargets - remainingTargets} / ${totalTargets}`;
+    if(remainingTargets == 0){
+        document.getElementById("scoreDisplay").classList.add("pulsing");
+        gameOver = true;
+        displayGameOver();
+    }
 
 }
 
@@ -145,10 +188,12 @@ function updateBlasterDisplay(){
         ammoNumber.style.color = "#FFFFFF";
         ammoNumber.style.fontSize = "1vw";
         ammoNumber.innerHTML = `click to reload`;
+        blasterDisplay.classList.add("pulsing");
 
     }
     else{
         blasterDisplay.style.backgroundColor = "#b9c0bf";
+        blasterDisplay.classList.remove("pulsing");
         ammoNumber.style.color = "#000000";
         ammoNumber.style.fontSize = "2vw";
     }
@@ -161,12 +206,14 @@ function addTimer(maxSeconds) {
     const timerDisplay = document.createElement('div');
     timerDisplay.setAttribute('id', 'timerDisplay');
     timerDisplay.classList.add("interface");
+    timerDisplay.classList.add("fadeIn");
 
     let timerImage = document.createElement('img');
     timerImage.src = "./assets/sprites/timer.webp";
     timerImage.style.position = "inline";
     timerImage.classList.add("nofire");
     timerImage.classList.add("timerSpin");
+    timerImage.classList.add("fadeIn");
     timerImage.setAttribute("draggable", false);
     timerImage.style.width = "auto";
     timerImage.style.height = "4vw";
@@ -189,11 +236,11 @@ function addTimer(maxSeconds) {
 function setCountdown(maxSeconds) {
     timeLeft = maxSeconds
     var countdownTimer = setInterval(function(){
-        timeLeft--
-        currentTime = timeLeft
+        timeLeft--;
+        currentTime = timeLeft;
         displayTime = document.getElementById('countdown')
         displayTime.innerHTML = `${timeLeft} sec`;
-    if (timeLeft === 0) {
+    if (timeLeft === 0 || gameOver) {
         // Timeout logic goes here
         //eng game function
         clearInterval(countdownTimer);
@@ -422,10 +469,9 @@ function destroyTarget(e){
     else{
         hitTarget.classList.add("destroyTarget");
     }
-    
-    
     updateScoreDisplay(); 
 }
+
 
 
 
@@ -510,7 +556,7 @@ initMusic();
 // scatterAssets(65);
 // scatterBoxes(15);
 
-// front area
+//front area
 addProp(20, 75, "box", 7 , true);
 addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
 addProp(30, 75, "box", 7, true);
