@@ -2,9 +2,11 @@
 var track = document.getElementById('track');
 var controlBtn = document.getElementById('play-pause');
 var muteIcon = document.getElementById("muteIcon");
+track.volume = .2;
 
 function playPause() {
   if (track.paused) {
+    ;
     track.play();
     controlBtn.className = "pause";
     muteIcon.src = "./assets/sprites/soundon.webp";

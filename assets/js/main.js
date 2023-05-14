@@ -14,6 +14,22 @@ let soundLevel = .5;
 let musicLevel = .2;
 let currentTime = 0;
 
+// NARRATOR LINES
+
+textPlayerWins = ["well that concludes todays session, well done","you are one of the best the alliance has","wow that might be one for the leaderbaord","if only all the other pilots were as good as you"]
+textGameStarts = ["welcome to the training simulator pilot, give this your best shot","I think you are going to hit a new record today pilot","wow pilot your back for more practice, i was about to recharge","now remember pilot the boxes are not your target!","oh no its you, my poor poor boxes"]
+textTargetHit = ["it seems your poor human eyesight isn't so bad", "easy shot, anyone could make that","these digital imperials almost smell like the real thing", "i'm thinking of renaming that target bobo","you will wear out the blaster at this rate","you must have had you bathna flakes for breakfast today!","thats right, if it moves,blast it","yes, yes, don't hold back", "feel at one with your blaster", "your style is growing on me","if only your mother could see you now","and they say rebels have shakey hands","you are approaching droid levels of accuracy", "blast away pilot, blast away", "i'll need to program better targets", "i'm starting to like you organics"]
+textReload = ["don't forget to reinduce your blaster crystal","yes unlike the real thing its 6 blasts and then a recharge", "recharge your blaster pilot!","you could just throw your blaster at them!!"]
+textTimeout = ["this level of performance will have you cleaning for the Hut clan in no time","if you get any worse you will be on the dark side","i would say to use the force but i think you are beyond help","oh no another terrible performance"]
+
+function pickRandomLine(dilogueOption) {
+    min = 0;
+    max = dilogueOption.length;
+    randomLineNum = Math.floor(Math.random() * (max - min) + min);
+
+    return dilogueOption[randomLineNum];
+}
+
 // ###### AUDIO FUNCTIONS ######
 
 function initMusic(){
@@ -211,6 +227,7 @@ function updateScoreDisplay(){
     scoreNumber.innerHTML = `targets hit ${totalTargets - remainingTargets} / ${totalTargets}`;
     if(remainingTargets == 0){
         document.getElementById("scoreDisplay").classList.add("pulsing");
+        document.getElementById("narratorMessage").innerHTML = pickRandomLine(textPlayerWins);
         gameOver = true;
         displayGameOver();
     }
@@ -346,6 +363,7 @@ function pullTrigger(e){
     else
     {
         playSound("blaster_out");
+        document.getElementById("narratorMessage").innerHTML = pickRandomLine(textReload);
         updateBlasterDisplay();
     }
 
@@ -371,10 +389,6 @@ function reloadBlaster(){
         }, 2000);
     }
 }
-
-//narrator
-
-addProp(5, 5, "droid_face", 10, false);
 
 function initNarrator(){
 
@@ -405,7 +419,7 @@ function initNarrator(){
     narratorMessage.classList.add("fadeIn");
     narratorMessage.style.fontSize = "1vw";
 
-    narratorMessage.innerHTML = `Well this is an excellent test of your skills pilot. Make the most of your time here today`;
+    narratorMessage.innerHTML = pickRandomLine(textGameStarts);
 
     document.getElementById("narratorDisplay").appendChild(narratorMessage);
 }
@@ -556,6 +570,7 @@ function destroyTarget(e){
 
     if(hitTarget.classList.contains("trooper")){
         playSound("trooper_die");
+        
     }
 
     if(hitTarget.classList.contains("vader")){
@@ -575,6 +590,7 @@ function destroyTarget(e){
 
     if(hitTarget.classList.contains("target")){
         hitTarget.classList.add("destroyTarget2");
+        document.getElementById("narratorMessage").innerHTML = pickRandomLine(textTargetHit);
         remainingTargets--;
     }
     else{
@@ -660,7 +676,7 @@ function scatterBoxes(count) {
 addBackground("bg2");
 initAudioControls()
 initNarrator();
-addTimer(200);
+addTimer(60);
 initScoreDisplay();
 initBlasterDisplay();
 updateBlasterDisplay();

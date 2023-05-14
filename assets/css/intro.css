@@ -12,6 +12,17 @@
     padding: 0;
 }
 
+#skip{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1vw;
+    display:inline;
+    position: fixed;
+    top: 1vw;
+    right: 3vw;
+    z-index: 500;
+}
+
 
 body {
     background-color: #000;
@@ -178,6 +189,8 @@ p#start {
 
 /* Intro Story Block */
 #titles {
+    font-family: 'jediFont';
+    letter-spacing: .5vw;
     position: absolute;
     width: 18em;
     height: 50em;
@@ -192,11 +205,11 @@ p#start {
     -ms-transform-origin: 50% 100%;
     -o-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
-    -webkit-transform: perspective(200px) rotateX(25deg);
-    -moz-transform: perspective(200px) rotateX(25deg);
-    -ms-transform: perspective(200px) rotateX(25deg);
-    -o-transform: perspective(200px) rotateX(25deg);
-    transform: perspective(200px) rotateX(25deg);
+    -webkit-transform: perspective(200px) rotateX(10deg);
+    -moz-transform: perspective(200px) rotateX(10deg);
+    -ms-transform: perspective(200px) rotateX(10deg);
+    -o-transform: perspective(200px) rotateX(10deg);
+    transform: perspective(200px) rotateX(10deg);
 }
 
 #titles:after {
