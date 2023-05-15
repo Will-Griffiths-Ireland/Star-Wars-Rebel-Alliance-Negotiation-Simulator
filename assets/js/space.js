@@ -18,6 +18,7 @@ function addBackground(){
     bg.style.top = 0;
     bg.style.left = 0;
     bg.style.width = "100vw";
+    bg.style.height = "100vh";
     gamePlayArea.appendChild(bg);
 
 }

@@ -71,6 +71,7 @@ function addBackground(backgroundNo){
     bg.style.top = "0";
     bg.style.left = "0";
     bg.style.width = "100vw";
+    bg.style.height = "100vh";
     bg.classList.add("fadeIn");
     gamePlayArea.appendChild(bg);
 
