@@ -45,24 +45,25 @@ The timer plays a critical role in the game and a big part of the players score 
 
 ![Timer GIF](assets/readme/timer.gif)
 
-The gameplay area shows the players current score, blaster ammo level, and timer. These are along the center and right of the screen.
+The gameplay area shows the player's current score, blaster ammo level, and timer. These are along the centre and right of the screen.
 
-The score shows how many targets the play has hit out of the total on the level.
-The blaster ammo level is not only a visual but acts as a reload button when the play is out of charges. This was to avoid spam clicking shots. The area pulses in red when you need to reload. Theree is also an audio noise for reloading.
-When the blaster has ammo and the player clicks it will fire a shot and be heard, if out of ammo the empty charge sounds plays.
+The score shows how many targets the player has hit out of the total on the level.
 
-Onscreen objects are mostly destructable but this can be changed when objects are placed.
-When targets or objects are hit by the blaster they are destroyed and the players score increases(if target hit) and blaster ammo goes down.
+Onscreen objects are mostly destructible but this can be changed when objects are placed.
+When targets or objects are hit by the blaster they are destroyed and the player's score increases(if target hit) and blaster ammo goes down.
 
-Annimations are configurable in placement functions and add to the difficulty of the game. The wookie dancers will be in the next release.
+Animations are configurable in placement functions and add to the difficulty of the game. The Wookie dancers will be in the next release.
 
-The droid instructer spurts out random lines depending on the players actions such as hitting the target or not reloading.
-
-Once the player hits all targets (or the timer runs down) then the game over screen displays the score and option to return to the main menu.
+The droid instructor spurts out random lines depending on the player's actions such as hitting the target or not reloading.
 
 ![Gameplay GIF](assets/readme/gameplay.gif)
 
+The blaster ammo amount is not only a visual but acts as a reload button when the play is out of charges. This was to avoid spam-clicking shots. The area pulses in red when you need to reload. There is also an audible noise for reloading.
+When the blaster has ammo and the player clicks it will fire a shot and be heard, if out of ammo the empty charge sounds plays.
+
 ![Shots Image](assets/readme/shots.png)
+
+Once the player hits all targets (or the timer runs down) then the game over screen displays the score and option to return to the main menu.
 
 ![score Image](assets/readme/score.png)
 
