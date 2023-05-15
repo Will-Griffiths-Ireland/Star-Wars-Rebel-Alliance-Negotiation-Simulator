@@ -5,6 +5,7 @@ Blaster Battles: Galactic Showdown is a First Person Light Gun shooter set in th
 
 ## Contents
 * [How to Play](#how-to-play)
+* [Features](#features)
 * [Typography](#typography)
 * [Technologies Used](#technologies-used)
 * [Installation and Setup](#installation-and-setup)
@@ -29,6 +30,22 @@ Your score is based on 10 points per target hit and then multiplied by your rema
 *To play on mobile, please rotate the screen to landscape., as this game is optimised for 16/9*
 
 - Shoot - Tap
+
+## Features:
+
+![Intro GIF](assets/readme/intro.gif)
+
+![Menu GIF](assets/readme/menu.gif)
+
+![Timer GIF](assets/readme/timer.gif)
+
+![Gameplay GIF](assets/readme/gameplay.gif)
+
+![Shots Image](assets/readme/shots.png)
+
+![score Image](assets/readme/score.png)
+
+
 
 ## Typography:
 - Title Font - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P)
