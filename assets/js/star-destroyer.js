@@ -532,6 +532,9 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
         case "trooper":
             imgPath = "./assets/sprites/StormTrooper.webp";
             break;
+        case "trooper-flip":
+                imgPath = "./assets/sprites/StormTrooper_Flipped_horizontal.webp";
+                break;
         case "droid2":
             imgPath = "./assets/sprites/battledroid.webp";
         break;
@@ -777,10 +780,10 @@ initMusic();
 //front area
 addProp(20, 75, "box", 7 , true);
 addProp(65, 75, "box", 7 , true);
-addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
+addTarget(25, 70, "trooper-flip", 7, true, "evading", 0, 1650);
 addProp(30, 75, "box", 7, true);
 addProp(40, 75, "box", 7, true);
-addTarget(60, 65, "trooper", 7, true, "jumping", 0, 1300);
+addTarget(60, 65, "trooper-flip", 7, true, "jumping", 0, 1300);
 addTarget(74, 75, "sidious", 9, true, "evading", 0, 1390);
 addTarget(50, 70, "vader", 15, true, "evading", 90, 2345);
 addTarget(25, 80, "luke", 8, true, "jumping", 90);
@@ -788,8 +791,8 @@ addTarget(16, 78, "leia", 7, true, "jumping", 90, 1344);
 
 //mid area
 addProp(55, 60, "box", 5, true);
-addProp(72, 62, "jarjar", 6, true, "vibrating");
-addTarget(70, 62, "trooper", 4, true, "vibrating", 70);
+addTarget(75, 62, "trooper-flip", 4, true, "vibrating", 70);
+addTarget(70, 62, "chewy", 4, true, "vibrating");
 addProp(38, 70, "box", 5, true);
 addTarget(43, 58, "trooper", 6, true, "dancing", 70);
 addProp(43, 72, "box", 6, true);
@@ -807,7 +810,7 @@ addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
 addProp(60, 52, "barrel", 5, true);
 addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
 addProp(64, 52, "barrel", 5, true);
-addTarget(64, 50, "trooper", 4, true, "dancing",);
+addTarget(64, 50, "trooper-flip", 4, true, "dancing",);
 addProp(68, 52, "barrel", 5, true);
 addTarget(68, 50, "trooper", 4, true, "dancing",);
 addTarget(30, 45, "trooper", 4, true, "dancing",);
