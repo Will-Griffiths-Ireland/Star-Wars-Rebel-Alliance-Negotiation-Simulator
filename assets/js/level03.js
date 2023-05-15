@@ -13,7 +13,7 @@ function randomNumber(min, max) {
 
 function addBackground(){
     const bg = document.createElement('img');
-    bg.src = "./assets/backgrounds/stars.jpg";
+    bg.src = "./assets/backgrounds/bg1.webp";
     bg.style.position = "absolute";
     bg.style.top = 0;
     bg.style.left = 0;
@@ -125,12 +125,6 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
         break;
         case "ewok":
             imgPath = "./assets/sprites/pissed_ewok.webp";
-        break;
-        case "tie":
-            imgPath = "./assets/sprites/tie.png";
-        break;
-        case "tie_flip":
-            imgPath = "./assets/sprites/tie_flip.png";
         break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";
@@ -260,18 +254,29 @@ function scatterBoxes(count) {
 // GAME START
 
 // Description:
-/* Be Careful the Stormtroopers have taken cover. The crates have been reincforced with cortosis and can't be destroyed. Aim for the exposed body parts. */
+/* The stormtroopers have starting trying to dodge your attacks. Be careful */
 
 addBackground();
-addTimer(30);
+addTimer(45);
 // scatterAssets(65);
 // scatterBoxes(15);
-addTarget(40 ,40, "tie", 12, true, "fly-right", 1);
+addProp(50, 75, "box", 9 , false);
+addTarget(50 ,65, "trooper", 9, true, "dodging", 1);
 
-addTarget(60 ,40, "tie_flip", 9, true, "fly-left", 1);
+addProp(30, 70, "box", 6 , false);
+addTarget(30 ,65, "trooper", 6, true, "evading", 1);
 
-addTarget(20 ,31, "tie_flip", 7, true, "fly-left", 1);
+addProp(70, 60, "box", 4 , false);
+addTarget(70 ,55, "trooper", 4, true, "none", 1);
 
-addTarget(70 ,20, "tie", 6, true, "fly-right", 1);
+addProp(70, 60, "box", 4 , false);
+addTarget(70 ,55, "trooper", 4, true, "none", 1);
 
-addTarget(20 ,70, "tie_flip", 15, true, "fly-left", 1);
+addProp(75, 80, "box", 10, false);
+addTarget(75 ,70, "trooper", 10, true, "dancing", 1);
+
+addProp(40, 60, "box", 4 , false);
+addTarget(40 ,55, "trooper", 4, true, "vibrating", 1);
+
+addProp(20, 80, "box", 10, false);
+addTarget(20 ,70, "trooper", 10, true, "vibrating", 1);

@@ -11,7 +11,7 @@ let remainingTargets = 0;
 let reloading = false;
 let gameOver = false;
 let soundLevel = .5;
-let musicLevel = .2;
+let musicLevel = .1;
 let currentTime = 0;
 
 // NARRATOR LINES
@@ -35,7 +35,7 @@ function pickRandomLine(dilogueOption) {
 function initMusic(){
 
     if(!musicOn){
-        musicTrack = new Audio('assets/music/kim-lightyear-legends-109307.mp3');
+        musicTrack = new Audio('assets/music/chiptune-grooving-142242.mp3');
         musicTrack.volume = musicLevel;
         musicTrack.play();
         musicTrack.loop = true;
@@ -71,6 +71,7 @@ function addBackground(backgroundNo){
     bg.style.top = "0";
     bg.style.left = "0";
     bg.style.width = "100vw";
+    bg.style.height = "100vh";
     bg.classList.add("fadeIn");
     gamePlayArea.appendChild(bg);
 
@@ -91,6 +92,7 @@ function initAudioControls(){
     audioControlsDisplay.setAttribute("draggable", false);
     audioControlsDisplay.classList.add("interface");
     audioControlsDisplay.classList.add("nofire");
+    audioControlsDisplay.classList.add("fadeIn");
     
     gamePlayArea.appendChild(audioControlsDisplay);
 
@@ -168,6 +170,7 @@ function initScoreDisplay(){
     scoreDisplay.setAttribute("draggable", false);
     scoreDisplay.classList.add("interface");
     scoreDisplay.classList.add("nofire");
+    scoreDisplay.classList.add("fadeIn");
     
     gamePlayArea.appendChild(scoreDisplay);
 
@@ -207,17 +210,27 @@ function displayGameOver(){
     gameOverMessage.classList.add("nofire");
     gameOverMessage.style.fontSize = "3vw";
 
+    let menuLink = document.createElement('p');
+    menuLink.setAttribute("id", "menuLink");
+    menuLink.style.zIndex = "5000";
+    menuLink.classList.add("nofire");
+    menuLink.style.fontSize = "2vw";
+    menuLink.innerHTML = `
+    <a id="backMenu" href="./menu.html" target="_self"> return to menu</a>
+    `;
+
     let gameScore;
     if(currentTime <= 0){
-        gameScore = totalTargets - remainingTargets;
+        gameScore = (totalTargets - remainingTargets) * 10;
     }
     else{
-        gameScore = ((currentTime) * (totalTargets - remainingTargets));
+        gameScore = ((currentTime) * ((totalTargets - remainingTargets) * 10));
     } 
     
     gameOverMessage.innerHTML = `Your score is ${gameScore}`;
 
     document.getElementById("gameOverDisplay").appendChild(gameOverMessage);
+    document.getElementById("gameOverDisplay").appendChild(menuLink);
 
 }
 
@@ -397,7 +410,8 @@ function initNarrator(){
     narratorDisplay.setAttribute("draggable", false);
     narratorDisplay.classList.add("interface");
     narratorDisplay.classList.add("nofire");
-    narratorDisplay.addEventListener("click", reloadBlaster);
+    narratorDisplay.classList.add("fadeIn");
+    
     
     gamePlayArea.appendChild(narratorDisplay);
 
@@ -470,6 +484,18 @@ function addProp(relX, relY, type, scale, destructable){
         case "barrier2":
             imgPath = "./assets/sprites/barrier2.webp";
         break;
+        case "chair":
+            imgPath = "./assets/sprites/chair.webp";
+        break;
+        case "chest":
+            imgPath = "./assets/sprites/chest.webp";
+        break;
+        case "fancy_chair":
+            imgPath = "./assets/sprites/fancy_chair.webp";
+        break;
+        case "desk":
+            imgPath = "./assets/sprites/desk.webp";
+        break;
         default:
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
         }
@@ -506,6 +532,9 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
         case "trooper":
             imgPath = "./assets/sprites/StormTrooper.webp";
             break;
+        case "trooper-flip":
+                imgPath = "./assets/sprites/StormTrooper_Flipped_horizontal.webp";
+                break;
         case "droid2":
             imgPath = "./assets/sprites/battledroid.webp";
         break;
@@ -517,6 +546,72 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
         break;
         case "ewok":
             imgPath = "./assets/sprites/pissed_ewok.webp";
+        break;
+        case "nice_ewok":
+            imgPath = "./assets/sprites/good_ewok.webp";
+        break;
+        case "jedi":
+            imgPath = "./assets/sprites/jedi1.webp";
+        break;
+        case "droid3":
+            imgPath = "./assets/sprites/droid_biggun.webp";
+        break;
+        case "maul":
+            imgPath = "./assets/sprites/maul.webp";
+        break;
+        case "luke":
+            imgPath = "./assets/sprites/luke-skywalker.webp";
+        break;
+        case "chewy":
+            imgPath = "./assets/sprites/chewbacca.webp";
+        break;
+        case "jarjar":
+            imgPath = "./assets/sprites/jarjar.webp";
+        break;
+        case "at-at":
+            imgPath = "./assets/sprites/at-at-walker.webp.webp";
+        break;
+        case "walker":
+            imgPath = "./assets/sprites/at-walker.webp.webp";
+        break;
+        case "bb8":
+            imgPath = "./assets/sprites/BB-8.webp";
+        break;
+        case "c3po":
+            imgPath = "./assets/sprites/C3-PO.webp";
+        break;
+        case "r2d2":
+            imgPath = "./assets/sprites/R2-D2.webp";
+        break;
+        case "sidious":
+            imgPath = "./assets/sprites/darth-sidious.webp";
+        break;
+        case "deathstar":
+            imgPath = "./assets/sprites/deathstar.webp";
+        break;
+        case "millenium-falcon":
+            imgPath = "./assets/sprites/millenium-falcon.webp";
+        break;
+        case "ewok-spear":
+            imgPath = "./assets/sprites/ewok-spear.webp";
+        break;
+        case "leia":
+            imgPath = "./assets/sprites/princess-leia.webp";
+        break;
+        case "hansolo":
+            imgPath = "./assets/sprites/hansolo.webp";
+        break;
+        case "yoda":
+            imgPath = "./assets/sprites/yoda.webp";
+        break;
+        case "vader2":
+            imgPath = "./assets/sprites/vader-2.webp";
+        break;
+        case "star-destroyer":
+            imgPath = "./assets/sprites/star-destroyer.webp";
+        break;
+        case "x-wing":
+            imgPath = "./assets/sprites/x-wing.webp";
         break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";
@@ -673,7 +768,7 @@ function scatterBoxes(count) {
 
 // GAME START
 
-addBackground("bg2");
+addBackground("ship-corridor-bg");
 initAudioControls()
 initNarrator();
 addTimer(60);
@@ -682,38 +777,45 @@ initBlasterDisplay();
 updateBlasterDisplay();
 initMusic();
 
-// scatterAssets(65);
-// scatterBoxes(15);
-
 //front area
 addProp(20, 75, "box", 7 , true);
-addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
+addProp(65, 75, "box", 7 , true);
+addTarget(25, 70, "trooper-flip", 7, true, "evading", 0, 1650);
 addProp(30, 75, "box", 7, true);
 addProp(40, 75, "box", 7, true);
-addTarget(60, 70, "droid2", 8, true, "jumping", 0, 1300);
+addTarget(60, 65, "trooper-flip", 7, true, "jumping", 0, 1300);
+addTarget(74, 75, "sidious", 9, true, "evading", 0, 1390);
 addTarget(50, 70, "vader", 15, true, "evading", 90, 2345);
-addTarget(25, 80, "ewok", 8, true, "jumping", 90);
-addProp(65, 79, "barrier", 15, true);
-addProp(10, 79, "barrier2", 15, true);
-//mid area
+addTarget(25, 80, "luke", 8, true, "jumping", 90);
+addTarget(16, 78, "leia", 7, true, "jumping", 90, 1344);
 
-addProp(40, 70, "box", 5, true);
-addTarget(43, 62, "ewok", 6, true, "dancing", 80);
+//mid area
+addProp(55, 60, "box", 5, true);
+addTarget(75, 62, "trooper-flip", 4, true, "vibrating", 70);
+addTarget(70, 62, "chewy", 4, true, "vibrating");
+addProp(38, 70, "box", 5, true);
+addTarget(43, 58, "trooper", 6, true, "dancing", 70);
 addProp(43, 72, "box", 6, true);
-addProp(46, 70, "box", 5, true);
-addProp(23, 60, "drum", 6, true);
-addProp(29, 60, "drum", 6, true);
-addProp(25, 62, "drum", 6, true);
-addTarget(30, 55, "droid3", 8, true, "dodging",0 , 4000);
-addTarget(60, 62, "ewok", 6, true, "vibrating",);
+addProp(47, 70, "box", 5, true);
+addProp(23, 60, "barrel", 6, true);
+addProp(29, 60, "barrel", 6, true);
+addProp(25, 62, "barrel", 6, true);
+addTarget(30, 55, "maul", 12, true, "dodging",0 , 4000);
+
 
 //back area 
 addProp(45, 60, "box", 5, false);
 addProp(50, 60, "box", 5, false);
 addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
-addProp(55, 60, "box", 5, true);
-addTarget(72, 62, "droid1", 6, true, "vibrating");
+addProp(60, 52, "barrel", 5, true);
 addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
-addTarget(64, 50, "trooper", 4, true, "dancing",);
+addProp(64, 52, "barrel", 5, true);
+addTarget(64, 50, "trooper-flip", 4, true, "dancing",);
+addProp(68, 52, "barrel", 5, true);
+addTarget(68, 50, "trooper", 4, true, "dancing",);
+addTarget(30, 45, "trooper", 4, true, "dancing",);
+addProp(30, 50, "barrel", 5, true);
+
+
 
 updateScoreDisplay(); 

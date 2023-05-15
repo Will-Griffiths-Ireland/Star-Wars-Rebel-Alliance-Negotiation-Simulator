@@ -13,7 +13,7 @@ function randomNumber(min, max) {
 
 function addBackground(){
     const bg = document.createElement('img');
-    bg.src = "./assets/backgrounds/stars.jpg";
+    bg.src = "./assets/backgrounds/bg1.webp";
     bg.style.position = "absolute";
     bg.style.top = 0;
     bg.style.left = 0;
@@ -125,12 +125,6 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
         break;
         case "ewok":
             imgPath = "./assets/sprites/pissed_ewok.webp";
-        break;
-        case "tie":
-            imgPath = "./assets/sprites/tie.png";
-        break;
-        case "tie_flip":
-            imgPath = "./assets/sprites/tie_flip.png";
         break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";
@@ -263,15 +257,23 @@ function scatterBoxes(count) {
 /* Be Careful the Stormtroopers have taken cover. The crates have been reincforced with cortosis and can't be destroyed. Aim for the exposed body parts. */
 
 addBackground();
-addTimer(30);
+addTimer(45);
 // scatterAssets(65);
 // scatterBoxes(15);
-addTarget(40 ,40, "tie", 12, true, "fly-right", 1);
+addProp(20, 75, "box", 12 , false);
+addTarget(20 ,65, "trooper", 12, true, "dancing", 1);
 
-addTarget(60 ,40, "tie_flip", 9, true, "fly-left", 1);
+addProp(40, 65, "box", 8 , false);
+addTarget(40 ,57, "trooper", 8, true, "dancing", 1);
 
-addTarget(20 ,31, "tie_flip", 7, true, "fly-left", 1);
+addProp(65, 75, "box", 10 , false);
+addTarget(62 ,65, "trooper", 10, true, "dancing", 1);
 
-addTarget(70 ,20, "tie", 6, true, "fly-right", 1);
+addProp(30, 60, "box", 5 , false);
+addTarget(31 ,55, "trooper", 5, true, "dancing", 1);
 
-addTarget(20 ,70, "tie_flip", 15, true, "fly-left", 1);
+addProp(65, 55, "box", 4 , false);
+addTarget(65 ,52, "trooper", 4, true, "dancing", 1);
+
+addProp(50, 58, "box", 5 , false);
+addTarget(50 ,52, "trooper", 5, true, "dancing", 1);

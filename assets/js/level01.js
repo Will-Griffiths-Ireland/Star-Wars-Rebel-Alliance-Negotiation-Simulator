@@ -13,7 +13,7 @@ function randomNumber(min, max) {
 
 function addBackground(){
     const bg = document.createElement('img');
-    bg.src = "./assets/backgrounds/stars.jpg";
+    bg.src = "./assets/backgrounds/bg1.webp";
     bg.style.position = "absolute";
     bg.style.top = 0;
     bg.style.left = 0;
@@ -125,12 +125,6 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex){
         break;
         case "ewok":
             imgPath = "./assets/sprites/pissed_ewok.webp";
-        break;
-        case "tie":
-            imgPath = "./assets/sprites/tie.png";
-        break;
-        case "tie_flip":
-            imgPath = "./assets/sprites/tie_flip.png";
         break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";
@@ -260,18 +254,10 @@ function scatterBoxes(count) {
 // GAME START
 
 // Description:
-/* Be Careful the Stormtroopers have taken cover. The crates have been reincforced with cortosis and can't be destroyed. Aim for the exposed body parts. */
+/* To destroy the target you must aim and shoot. */
 
 addBackground();
-addTimer(30);
+addTimer(45);
 // scatterAssets(65);
 // scatterBoxes(15);
-addTarget(40 ,40, "tie", 12, true, "fly-right", 1);
-
-addTarget(60 ,40, "tie_flip", 9, true, "fly-left", 1);
-
-addTarget(20 ,31, "tie_flip", 7, true, "fly-left", 1);
-
-addTarget(70 ,20, "tie", 6, true, "fly-right", 1);
-
-addTarget(20 ,70, "tie_flip", 15, true, "fly-left", 1);
+addTarget(40 ,50, "trooper", 15, true, "dancing", 1);
