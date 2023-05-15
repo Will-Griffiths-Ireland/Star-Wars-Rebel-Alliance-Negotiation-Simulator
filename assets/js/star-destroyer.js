@@ -35,7 +35,7 @@ function pickRandomLine(dilogueOption) {
 function initMusic(){
 
     if(!musicOn){
-        musicTrack = new Audio('assets/music/kim-lightyear-legends-109307.mp3');
+        musicTrack = new Audio('assets/music/chiptune-grooving-142242.mp3');
         musicTrack.volume = musicLevel;
         musicTrack.play();
         musicTrack.loop = true;
@@ -71,6 +71,7 @@ function addBackground(backgroundNo){
     bg.style.top = "0";
     bg.style.left = "0";
     bg.style.width = "100vw";
+    bg.style.height = "100vh";
     bg.classList.add("fadeIn");
     gamePlayArea.appendChild(bg);
 
@@ -549,6 +550,66 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
         case "jedi":
             imgPath = "./assets/sprites/jedi1.webp";
         break;
+        case "droid3":
+            imgPath = "./assets/sprites/droid_biggun.webp";
+        break;
+        case "maul":
+            imgPath = "./assets/sprites/maul.webp";
+        break;
+        case "luke":
+            imgPath = "./assets/sprites/luke-skywalker.webp";
+        break;
+        case "chewy":
+            imgPath = "./assets/sprites/chewbacca.webp";
+        break;
+        case "jarjar":
+            imgPath = "./assets/sprites/jarjar.webp";
+        break;
+        case "at-at":
+            imgPath = "./assets/sprites/at-at-walker.webp.webp";
+        break;
+        case "walker":
+            imgPath = "./assets/sprites/at-walker.webp.webp";
+        break;
+        case "bb8":
+            imgPath = "./assets/sprites/BB-8.webp";
+        break;
+        case "c3po":
+            imgPath = "./assets/sprites/C3-PO.webp";
+        break;
+        case "r2d2":
+            imgPath = "./assets/sprites/R2-D2.webp";
+        break;
+        case "sidious":
+            imgPath = "./assets/sprites/darth-sidious.webp";
+        break;
+        case "deathstar":
+            imgPath = "./assets/sprites/deathstar.webp";
+        break;
+        case "millenium-falcon":
+            imgPath = "./assets/sprites/millenium-falcon.webp";
+        break;
+        case "ewok-spear":
+            imgPath = "./assets/sprites/ewok-spear.webp";
+        break;
+        case "leia":
+            imgPath = "./assets/sprites/princess-leia.webp";
+        break;
+        case "hansolo":
+            imgPath = "./assets/sprites/hansolo.webp";
+        break;
+        case "yoda":
+            imgPath = "./assets/sprites/yoda.webp";
+        break;
+        case "vader2":
+            imgPath = "./assets/sprites/vader-2.webp";
+        break;
+        case "star-destroyer":
+            imgPath = "./assets/sprites/star-destroyer.webp";
+        break;
+        case "x-wing":
+            imgPath = "./assets/sprites/x-wing.webp";
+        break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";
         }
@@ -704,7 +765,7 @@ function scatterBoxes(count) {
 
 // GAME START
 
-addBackground("google");
+addBackground("ship-corridor-bg");
 initAudioControls()
 initNarrator();
 addTimer(60);
@@ -714,22 +775,44 @@ updateBlasterDisplay();
 initMusic();
 
 //front area
-addProp(20, 75, "desk", 12 , true);
-addProp(22, 78, "chair", 8 , true);
-addProp(32, 75, "desk", 12 , true);
-addProp(60, 70, "desk", 10 , true);
-addTarget(32, 73, "droid1", 6, true, "dodging");
-addTarget(22, 74, "droid2", 9, true, "jumping",0,2345);
-addProp(52, 78, "chair", 8 , true);
-addTarget(52, 76.2, "ewok", 6, true, "jumping",80,2345);
-addProp(67, 78, "chair", 8 , true);
-addTarget(67, 76, "trooper", 6, true, "vibrating",0,500);
-addTarget(55, 56, "droid3", 6, true, "evading",0,1900);
+addProp(20, 75, "box", 7 , true);
+addProp(65, 75, "box", 7 , true);
+addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
+addProp(30, 75, "box", 7, true);
+addProp(40, 75, "box", 7, true);
+addTarget(60, 65, "trooper", 7, true, "jumping", 0, 1300);
+addTarget(74, 75, "sidious", 9, true, "evading", 0, 1390);
+addTarget(50, 70, "vader", 15, true, "evading", 90, 2345);
+addTarget(25, 80, "luke", 8, true, "jumping", 90);
+addTarget(16, 78, "leia", 7, true, "jumping", 90, 1344);
 
-addProp(34, 60, "desk", 9 , true);
-addTarget(35, 56, "trooper", 6, true, "evading",0,3478);
-addProp(42, 63, "desk", 9 , true);
-addProp(70, 65, "desk", 9 , true);
+//mid area
+addProp(55, 60, "box", 5, true);
+addProp(72, 62, "jarjar", 6, true, "vibrating");
+addTarget(70, 62, "trooper", 4, true, "vibrating", 70);
+addProp(38, 70, "box", 5, true);
+addTarget(43, 58, "trooper", 6, true, "dancing", 70);
+addProp(43, 72, "box", 6, true);
+addProp(47, 70, "box", 5, true);
+addProp(23, 60, "barrel", 6, true);
+addProp(29, 60, "barrel", 6, true);
+addProp(25, 62, "barrel", 6, true);
+addTarget(30, 55, "maul", 12, true, "dodging",0 , 4000);
+
+
+//back area 
+addProp(45, 60, "box", 5, false);
+addProp(50, 60, "box", 5, false);
+addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
+addProp(60, 52, "barrel", 5, true);
+addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
+addProp(64, 52, "barrel", 5, true);
+addTarget(64, 50, "trooper", 4, true, "dancing",);
+addProp(68, 52, "barrel", 5, true);
+addTarget(68, 50, "trooper", 4, true, "dancing",);
+addTarget(30, 45, "trooper", 4, true, "dancing",);
+addProp(30, 50, "barrel", 5, true);
+
 
 
 updateScoreDisplay(); 
