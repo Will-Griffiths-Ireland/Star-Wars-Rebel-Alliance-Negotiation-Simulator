@@ -294,6 +294,25 @@ dialog .close-button {
 /* END - DIALOG / MODAL */
 
 
+/* Credits */
+
+ul {list-style:none;}
+li {margin-bottom:10px;padding: 15px;background:#000;border-radius:100px;}
+li a {color: #000;}
+li:hover a {text-decoration:underline;}
+
+.will a {color: var(--purple);}
+.callum a {color: var(--yellow);}
+.devan a {color: var(--red);}
+.alex a {color: var(--dark-blue);}
+.jason a {color: var(--green);}
+.john {color: var(--blue);}
+.nico {color: #fff;}
+
+
+/* END - Credits */
+
+
 /***** MEDIA QUERIES *****/
 @media (max-width:768px){
   dialog {width:90%;}
