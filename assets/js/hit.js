@@ -2,10 +2,11 @@ const container = document.getElementById('gamePlayArea');
 const sparkleNum = 15;
 const radius = 2;
 const height = 10;
-const width = 3;
+const width = 5;
 const color = ['red', 'blue', 'yellow']
-let maxHeight = 40;
-let target = true;
+const maxHeightValue = 80;
+let maxHeight = maxHeightValue;
+// let target = true;
 
 
 function degToRad(deg) {
@@ -18,6 +19,7 @@ function randomRange(min, max) {
 }
 
 
+// Grab muuse ot tuch x an y cordinaties.
 function getPos(event){
   const evt = {
     x: event.type.includes('mouse') ? event.pageX : event.touches[0].clientX,
@@ -26,7 +28,7 @@ function getPos(event){
   return evt;
 }
 
-
+// Define sparkle elements.
 function defineElement(container, className){
     const elm = document.createElement('div');
     elm.className = className;
@@ -65,6 +67,7 @@ function sparklesProperties(height, width, color) {
 sparklesProperties(height, width, color);
 
 
+// Position a sparkles around the mouse by specified radius.
 function sparkleAroundMouse(event,x, y, radius) {
      grabSparkles().forEach(sparkle => {
         const currentX = x
@@ -81,6 +84,7 @@ function sparkleAroundMouse(event,x, y, radius) {
 }
 
 
+// Assign a sparkles to the mouse movement.
 let j = 0;
 let xWithRadius, yWithRadius;
 const slicesInRad = degToRad(slice);
@@ -104,7 +108,7 @@ function sparkleTransition() {
 
         sparkle.addEventListener('transitionend', () => {
             sparkle.style.opacity = '0';
-            maxHeight = 40;
+            maxHeight = maxHeightValue;
         })
     })
 
@@ -123,9 +127,10 @@ container.addEventListener('mousedown', (event) => {
     sparkleAroundMouse(event, x, y, radius);
 })
 
+
 container.addEventListener('click', (event) => {
-    if (target) {
-        sparkleAroundMouse(event, 40);
+    if (shotsRemaining > 0) {
+        sparkleAroundMouse(event, maxHeight);
         sparkleTransition();
         sparklesProperties(maxHeight, width, color);
     }
