@@ -11,7 +11,7 @@ let remainingTargets = 0;
 let reloading = false;
 let gameOver = false;
 let soundLevel = .5;
-let musicLevel = .2;
+let musicLevel = .1;
 let currentTime = 0;
 
 // NARRATOR LINES
@@ -91,6 +91,7 @@ function initAudioControls(){
     audioControlsDisplay.setAttribute("draggable", false);
     audioControlsDisplay.classList.add("interface");
     audioControlsDisplay.classList.add("nofire");
+    audioControlsDisplay.classList.add("fadeIn");
     
     gamePlayArea.appendChild(audioControlsDisplay);
 
@@ -168,6 +169,7 @@ function initScoreDisplay(){
     scoreDisplay.setAttribute("draggable", false);
     scoreDisplay.classList.add("interface");
     scoreDisplay.classList.add("nofire");
+    scoreDisplay.classList.add("fadeIn");
     
     gamePlayArea.appendChild(scoreDisplay);
 
@@ -207,17 +209,27 @@ function displayGameOver(){
     gameOverMessage.classList.add("nofire");
     gameOverMessage.style.fontSize = "3vw";
 
+    let menuLink = document.createElement('p');
+    menuLink.setAttribute("id", "menuLink");
+    menuLink.style.zIndex = "5000";
+    menuLink.classList.add("nofire");
+    menuLink.style.fontSize = "2vw";
+    menuLink.innerHTML = `
+    <a id="backMenu" href="./menu.html" target="_self"> return to menu</a>
+    `;
+
     let gameScore;
     if(currentTime <= 0){
-        gameScore = totalTargets - remainingTargets;
+        gameScore = (totalTargets - remainingTargets) * 10;
     }
     else{
-        gameScore = ((currentTime) * (totalTargets - remainingTargets));
+        gameScore = ((currentTime) * ((totalTargets - remainingTargets) * 10));
     } 
     
     gameOverMessage.innerHTML = `Your score is ${gameScore}`;
 
     document.getElementById("gameOverDisplay").appendChild(gameOverMessage);
+    document.getElementById("gameOverDisplay").appendChild(menuLink);
 
 }
 
@@ -397,7 +409,8 @@ function initNarrator(){
     narratorDisplay.setAttribute("draggable", false);
     narratorDisplay.classList.add("interface");
     narratorDisplay.classList.add("nofire");
-    narratorDisplay.addEventListener("click", reloadBlaster);
+    narratorDisplay.classList.add("fadeIn");
+    
     
     gamePlayArea.appendChild(narratorDisplay);
 
@@ -470,6 +483,18 @@ function addProp(relX, relY, type, scale, destructable){
         case "barrier2":
             imgPath = "./assets/sprites/barrier2.webp";
         break;
+        case "chair":
+            imgPath = "./assets/sprites/chair.webp";
+        break;
+        case "chest":
+            imgPath = "./assets/sprites/chest.webp";
+        break;
+        case "fancy_chair":
+            imgPath = "./assets/sprites/fancy_chair.webp";
+        break;
+        case "desk":
+            imgPath = "./assets/sprites/desk.webp";
+        break;
         default:
             imgPath = "./assets/sprites/rebel_supply_crate.webp";
         }
@@ -517,6 +542,12 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
         break;
         case "ewok":
             imgPath = "./assets/sprites/pissed_ewok.webp";
+        break;
+        case "nice_ewok":
+            imgPath = "./assets/sprites/good_ewok.webp";
+        break;
+        case "jedi":
+            imgPath = "./assets/sprites/jedi1.webp";
         break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";
@@ -673,7 +704,7 @@ function scatterBoxes(count) {
 
 // GAME START
 
-addBackground("bg2");
+addBackground("google");
 initAudioControls()
 initNarrator();
 addTimer(60);
@@ -682,38 +713,23 @@ initBlasterDisplay();
 updateBlasterDisplay();
 initMusic();
 
-// scatterAssets(65);
-// scatterBoxes(15);
-
 //front area
-addProp(20, 75, "box", 7 , true);
-addTarget(25, 70, "trooper", 7, true, "evading", 0, 1650);
-addProp(30, 75, "box", 7, true);
-addProp(40, 75, "box", 7, true);
-addTarget(60, 70, "droid2", 8, true, "jumping", 0, 1300);
-addTarget(50, 70, "vader", 15, true, "evading", 90, 2345);
-addTarget(25, 80, "ewok", 8, true, "jumping", 90);
-addProp(65, 79, "barrier", 15, true);
-addProp(10, 79, "barrier2", 15, true);
-//mid area
+addProp(20, 75, "desk", 12 , true);
+addProp(22, 78, "chair", 8 , true);
+addProp(32, 75, "desk", 12 , true);
+addProp(60, 70, "desk", 10 , true);
+addTarget(32, 73, "droid1", 6, true, "dodging");
+addTarget(22, 74, "droid2", 9, true, "jumping",0,2345);
+addProp(52, 78, "chair", 8 , true);
+addTarget(52, 76.2, "ewok", 6, true, "jumping",80,2345);
+addProp(67, 78, "chair", 8 , true);
+addTarget(67, 76, "trooper", 6, true, "vibrating",0,500);
+addTarget(55, 56, "droid3", 6, true, "evading",0,1900);
 
-addProp(40, 70, "box", 5, true);
-addTarget(43, 62, "ewok", 6, true, "dancing", 80);
-addProp(43, 72, "box", 6, true);
-addProp(46, 70, "box", 5, true);
-addProp(23, 60, "drum", 6, true);
-addProp(29, 60, "drum", 6, true);
-addProp(25, 62, "drum", 6, true);
-addTarget(30, 55, "droid3", 8, true, "dodging",0 , 4000);
-addTarget(60, 62, "ewok", 6, true, "vibrating",);
+addProp(34, 60, "desk", 9 , true);
+addTarget(35, 56, "trooper", 6, true, "evading",0,3478);
+addProp(42, 63, "desk", 9 , true);
+addProp(70, 65, "desk", 9 , true);
 
-//back area 
-addProp(45, 60, "box", 5, false);
-addProp(50, 60, "box", 5, false);
-addTarget(48, 54, "trooper", 5, true, "dodging", 0, 2600);
-addProp(55, 60, "box", 5, true);
-addTarget(72, 62, "droid1", 6, true, "vibrating");
-addTarget(60, 50, "trooper", 4, true, "dancing",0,300);
-addTarget(64, 50, "trooper", 4, true, "dancing",);
 
 updateScoreDisplay(); 
