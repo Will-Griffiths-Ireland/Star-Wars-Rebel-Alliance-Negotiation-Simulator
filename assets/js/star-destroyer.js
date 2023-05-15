@@ -786,13 +786,13 @@ addProp(40, 75, "box", 7, true);
 addTarget(60, 65, "trooper-flip", 7, true, "jumping", 0, 1300);
 addTarget(74, 75, "sidious", 9, true, "evading", 0, 1390);
 addTarget(50, 70, "vader", 15, true, "evading", 90, 2345);
-addTarget(25, 80, "luke", 8, true, "jumping", 90);
+addTarget(25, 70, "luke", 8, true, "jumping", 90);
 addTarget(16, 78, "leia", 7, true, "jumping", 90, 1344);
 
 //mid area
 addProp(55, 60, "box", 5, true);
-addTarget(75, 62, "trooper-flip", 4, true, "vibrating", 70);
-addTarget(70, 62, "chewy", 4, true, "vibrating");
+addTarget(75, 60, "trooper-flip", 5, true, "vibrating", 70);
+addTarget(68, 62, "chewy", 5, true, "evading");
 addProp(38, 70, "box", 5, true);
 addTarget(43, 58, "trooper", 6, true, "dancing", 70);
 addProp(43, 72, "box", 6, true);
@@ -815,6 +815,7 @@ addProp(68, 52, "barrel", 5, true);
 addTarget(68, 50, "trooper", 4, true, "dancing",);
 addTarget(30, 45, "trooper", 4, true, "dancing",);
 addProp(30, 50, "barrel", 5, true);
+addProp(35, 50, "box", 5, false);
 
 
 
