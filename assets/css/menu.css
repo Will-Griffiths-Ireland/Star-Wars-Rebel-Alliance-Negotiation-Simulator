@@ -306,7 +306,6 @@ dialog .close-button {
 
 
 /* Credits */
-
 ul {list-style:none;}
 li {margin-bottom:10px;padding: 15px;background:#000;border-radius:100px;}
 li a {color: #000;}
@@ -319,25 +318,6 @@ li:hover a {text-decoration:underline;}
 .jason a {color: var(--green);}
 .john a {color: var(--blue);}
 .nico {color: #fff;}
-
-
-.devan {
-    position:relative;
-    padding-left:2rem;
-}
-.devan:before {
-    content: '';
-    position: absolute;
-    left: 35%;
-    bottom: 18px;
-    background-size: 22px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 22px;
-    height: 24px;
-    background-image: url("./assets/sprites/tie.png");
-}
-
 /* END - Credits */
 
 
