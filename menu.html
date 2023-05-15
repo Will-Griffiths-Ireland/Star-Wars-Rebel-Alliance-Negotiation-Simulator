@@ -7,7 +7,7 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Star Wars Shooter">
     <meta name="keywords" content="HTML5, CSS3, JavaScript, Star Wars, Shooter">
-    <meta name="author" content=" 'Filthy Rebel Scum' - Team 5 CI Hackathon">
+    <meta name="author" content=" 'Filthy Rebel Scrum' - Team 5 CI Hackathon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/menu.css">
@@ -33,23 +33,19 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
     <main class="fadeIn">
 
     <!-- START BUTTON -->
-    <button class="game-nav-button">Start</button>
-    <dialog id="modalHowToPlay" data-modal>
+    <button data-open-modal class="game-nav-button green-hover">Start</button>
+    <dialog id="modalStart" data-modal>
         <div class="modal">
             <button class="btn close-button" data-close-modal>X</button>
             <h3>Choose Your Level</h3>
-
-            <button class="game-nav-button">>Start</button>
-            <button class="game-nav-button">>Start</button>
-            <button class="game-nav-button">>Start</button>
-            
-
-            <button class="btn">Okay</button>
+            <button class="btn level-button"><a href="./level01.html">Training</a></button>
+            <button class="btn level-button"><a href="./level02.html"></a>Vader</a></button>
+            <button class="btn level-button"><a href="./level03.html"></a>X-Wing</a></button>
         </div>
     </dialog>
 
     <!-- HOW TO PLAY BUTTON -->
-    <button data-open-modal class="game-nav-button">How to Play</button>
+    <button data-open-modal class="game-nav-button dark-blue-hover">How to Play</button>
     <dialog id="modalHowToPlay" data-modal>
         <div class="modal">
             <button class="btn close-button" data-close-modal>X</button>
@@ -62,7 +58,7 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
     </dialog>
 
     <!-- OPTIONS BUTTON -->
-    <button data-open-modal class="game-nav-button">Options</button>
+    <button data-open-modal class="game-nav-button red-hover">Options</button>
     <dialog id="modalOptions" data-modal>
         <div class="modal">
             <button class="btn close-button" data-close-modal>X</button>
@@ -75,7 +71,7 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
     </dialog>
 
     <!-- LEADERBOARDS BUTTON -->
-    <button data-open-modal class="game-nav-button">Leaderboards</button>
+    <button data-open-modal class="game-nav-button yellow-hover">Leaderboards</button>
     <dialog id="modalLeaderboard" data-modal>
         <div class="modal">
             <button class="btn close-button" data-close-modal>X</button>
@@ -89,7 +85,7 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
     </dialog>
 
     <!-- CREDITS BUTTON -->
-    <button data-open-modal class="game-nav-button">Credits</button>
+    <button data-open-modal class="game-nav-button purple-hover">Credits</button>
     <dialog id="modalHowToPlay" data-modal>
         <div class="modal">
             <button class="btn close-button" data-close-modal>X</button>
@@ -103,6 +99,11 @@ Nearly all code is generated and inserted to the DOM through JavaScript -->
 
     </main>
     
+    <footer class="fadeIn">
+        <p>© 2023 Filthy Rebel Scrum. All Rights Reserved.</p>
+        <p>This website was created for educational purposes. <br> 
+            By The <a href="https://github.com/Will-Griffiths-Ireland/Star-Wars-Rebel-Alliance-Negotiation-Simulator" target="_blank"> Filthy Rebel Scrum - Team 5 CI Hackathon </a> <br>For <a href="https://codeinstitute.net/full-stack-software-development-diploma/" target="_blank"> <img src="https://devancadman.github.io/hosted-assets/code-institute-technology-logo.png" alt="Code Institute Logo"> </a> May 2023 Hackathon</p>
+    </footer>
     <script src="./assets/js/menu.js"></script>
 </body>
 </html>

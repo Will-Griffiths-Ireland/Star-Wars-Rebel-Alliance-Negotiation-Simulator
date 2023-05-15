@@ -31,7 +31,7 @@ body {
     grid-gap:1rem;
 }
 
-.game-header, main {
+.game-header, main, footer {
     position: relative;
     z-index: 5;
     perspective: 800px;
@@ -110,8 +110,12 @@ body {
   font-family: "Press Start 2P", cursive;
 }
 
-.game-nav-button a {color:#fff;text-decoration: none;}
-.game-nav-button:hover, .game-nav-button:focus {
+a {
+    color:#fff;
+    text-decoration: none;
+}
+
+.blue-hover:hover, .blue-hover:focus {
   animation: neon-blue 1.5s ease-in-out infinite alternate;
 outline: none;
 }
@@ -125,7 +129,7 @@ outline: none;
   }
 }
 
-.game-nav-button:nth-child(1):hover, .game-nav-button:nth-child(1):focus {
+.green-hover:hover, .green-hover:focus {
   animation: neon-green 1.5s ease-in-out infinite alternate;
   outline: none;
 }
@@ -140,7 +144,7 @@ outline: none;
   }
 
 
-.game-nav-button:nth-child(2):hover, .game-nav-button:nth-child(2):focus {
+.dark-blue-hover:hover, .dark-blue-hover:focus {
   animation: neon-dark-blue 1.5s ease-in-out infinite alternate;
   outline: none;
 }
@@ -154,7 +158,7 @@ outline: none;
     }
   }
 
-.game-nav-button:nth-child(3):hover, .game-nav-button:nth-child(3):focus {
+.red-hover:hover, .red-hover:focus {
   animation: neon-red 1.5s ease-in-out infinite alternate;
   outline: none;
 }
@@ -168,7 +172,7 @@ outline: none;
     }
   }
 
-.game-nav-button:nth-child(4):hover, .game-nav-button:nth-child(4):focus {
+.purple-hover:hover, .purple-hover:focus {
   animation: neon-purple 1.5s ease-in-out infinite alternate;
   outline: none;
 }
@@ -182,7 +186,7 @@ outline: none;
     }
   }
 
-.game-nav-button:nth-child(5):hover, .game-nav-button:nth-child(5):focus {
+.yellow-hover:hover, .yellow-hover:focus {
   animation: neon-yellow 1.5s ease-in-out infinite alternate;
   outline: none;
 }
@@ -379,4 +383,25 @@ dialog .close-button {
         height: 800px;
     }
     }
-    /*** END - Stars ***/
+/*** END - Stars ***/
+
+
+/* Footer */
+
+footer {
+    font-family: 'jediFont', monospace;
+    text-align: center;
+}
+
+footer p, footer a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+footer img {
+    max-height: 15px;
+    display: inline-block;
+}
+
+/* END - Footer */
