@@ -264,7 +264,7 @@ dialog::-webkit-scrollbar-thumb:hover {
 
 .btn:hover, .btn:active {
     filter: none;
-    transform: translateY(5px);
+    background-color: #000;
     transition: all .25s;
 }
 
@@ -297,6 +297,12 @@ dialog .close-button {
 }
 /* END - DIALOG / MODAL */
 
+.level-button{
+
+  font-size: 1.2vw;
+  border-color: #000;
+}
+
 
 /* Level Buttons */
 .level-button.hoth:hover {background: url("./assets/backgrounds/stars.jpg") center / cover no-repeat;}
@@ -315,13 +321,13 @@ li {margin-bottom:10px;padding: 15px;background:#000;border-radius:100px;}
 li a {color: #000;}
 li:hover a {text-decoration:underline;}
 
-.will a {color: var(--purple);}
-.callum a {color: var(--yellow);}
-.devan a {color: var(--red);}
-.alex a {color: var(--dark-blue);}
-.jason a {color: var(--green);}
-.john a {color: var(--blue);}
-.nico {color: #fff;}
+.will a {color: var(--purple); font-size: 1vw;}
+.callum a {color: var(--yellow);font-size: 1vw;}
+.devan a {color: var(--red);font-size: 1vw;}
+.alex a {color: var(--dark-blue);font-size: 1vw;}
+.jason a {color: var(--green);font-size: 1vw;}
+.john a {color: var(--blue);font-size: 1vw;}
+.nico a {color: #ffffff;font-size: 1vw;}
 /* END - Credits */
 
 
