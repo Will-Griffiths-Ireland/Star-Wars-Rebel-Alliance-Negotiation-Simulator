@@ -17,9 +17,13 @@ html{
 }
 
 body {
-  cursor: url(../cursors/blaster_cursor.png) 32 32, pointer;
+  cursor: url(../cursors/cursor.png) 32 32, pointer;
   font-size:16px; 
   font-family: "Press Start 2P", cursive;
+}
+
+button, .game-nav-button, a {
+    cursor: url(../cursors/cursor.png) 32 32, pointer;
 }
 
 .grid {
@@ -55,6 +59,7 @@ body {
         scale: 1;
     }
 }
+
 
 /* Menu Title */
 .game-title {
@@ -104,7 +109,6 @@ body {
   font-weight: bold;
   text-align: center;
   text-decoration: none;
-  cursor: pointer;
   width: 100%;
   margin-bottom:1rem;
   font-family: "Press Start 2P", cursive;
