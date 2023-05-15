@@ -35,7 +35,7 @@ function pickRandomLine(dilogueOption) {
 function initMusic(){
 
     if(!musicOn){
-        musicTrack = new Audio('assets/music/kim-lightyear-legends-109307.mp3');
+        musicTrack = new Audio('assets/music/psykick-112469.mp3');
         musicTrack.volume = musicLevel;
         musicTrack.play();
         musicTrack.loop = true;
@@ -548,6 +548,12 @@ function addTarget(relX, relY, type, scale, destructable, motionType, zIndex, an
         break;
         case "jedi":
             imgPath = "./assets/sprites/jedi1.webp";
+            case "tie":
+                imgPath = "./assets/sprites/tie.png";
+            break;
+            case "tie_flip":
+                imgPath = "./assets/sprites/tie_flip.png";
+            break;
         break;
         default:
             imgPath = "./assets/sprites/StormTrooper.webp";

@@ -1,13 +1,17 @@
 .fly-left {
     animation-name: fly-left;
     animation-duration: 5s;
-    animation-timing-function: linear;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 .fly-right {
     animation-name: fly-right;
     animation-duration: 5s;
-    animation-timing-function: linear;
+    animation-timing-function:cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 @keyframes fly-left {

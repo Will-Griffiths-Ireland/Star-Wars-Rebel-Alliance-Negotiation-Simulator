@@ -11,19 +11,23 @@
   --dark-blue: #0052ff;
 }
 
+* {
+  cursor: url(../cursors/cursor.png) 0 0, pointer;
+}
+
 html{
   overflow:hidden;
   -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
 }
 
 body {
-  cursor: url(../cursors/cursor.png) 32 32, pointer;
+  cursor: url(../cursors/cursor.png) 0 0, pointer;
   font-size:16px; 
   font-family: "Press Start 2P", cursive;
 }
 
 button, .game-nav-button, a {
-    cursor: url(../cursors/cursor.png) 32 32, pointer;
+    cursor: url(../cursors/cursor.png) 0 0, pointer;
 }
 
 .grid {
